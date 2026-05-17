@@ -1,0 +1,1305 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Lio Ice Style | Bar mobile, cocktails et animation événementielle</title>
+  <meta name="description" content="Lio Ice Style : bar mobile depuis 2017 pour mariages, anniversaires, événements d'entreprise. Cocktails personnalisés et prestations sur mesure." />
+  <style>
+    :root{
+      --bg:#070707;
+      --bg-soft:#101010;
+      --panel:#15110e;
+      --panel-2:#1d1711;
+      --text:#ffffff;
+      --muted:#c8c0b6;
+      --soft:#8f877d;
+      --orange:#ff7a00;
+      --gold:#e6b15c;
+      --line:rgba(255,255,255,.12);
+      --shadow:0 24px 80px rgba(0,0,0,.42);
+      --radius:28px;
+      --radius-sm:18px;
+      --max:1180px;
+    }
+
+    *{box-sizing:border-box;margin:0;padding:0}
+    html{scroll-behavior:smooth}
+    body{
+      font-family:Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at top left, rgba(255,122,0,.20), transparent 34rem),
+        radial-gradient(circle at bottom right, rgba(230,177,92,.12), transparent 34rem),
+        var(--bg);
+      color:var(--text);
+      min-height:100vh;
+      overflow-x:hidden;
+    }
+
+    body.menu-open{overflow:hidden}
+    a{text-decoration:none;color:inherit}
+    img{max-width:100%;display:block}
+    button,input,select,textarea{font:inherit}
+    .container{width:min(var(--max), calc(100% - 32px));margin-inline:auto}
+    .page{display:none;min-height:100vh;padding-top:86px}
+    .page.active{display:block;animation:pageIn .45s ease both}
+    @keyframes pageIn{from{opacity:0;transform:translateY(14px)}to{opacity:1;transform:translateY(0)}}
+
+    .site-header{
+      position:fixed;
+      inset:0 0 auto 0;
+      z-index:100;
+      backdrop-filter:blur(22px);
+      background:rgba(7,7,7,.78);
+      border-bottom:1px solid var(--line);
+    }
+
+    .nav-wrap{
+      width:min(var(--max), calc(100% - 32px));
+      margin:auto;
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      min-height:82px;
+      gap:18px;
+    }
+
+    .brand{
+      display:flex;
+      align-items:center;
+      gap:13px;
+      min-width:max-content;
+    }
+
+    .brand-logo{
+      width:54px;
+      height:54px;
+      border-radius:18px;
+      object-fit:cover;
+      border:1px solid rgba(255,122,0,.45);
+      box-shadow:0 0 0 5px rgba(255,122,0,.08);
+    }
+
+    .brand-text strong{
+      display:block;
+      letter-spacing:.03em;
+      font-size:1.02rem;
+      line-height:1;
+    }
+    .brand-text span{
+      display:block;
+      color:var(--gold);
+      font-size:.76rem;
+      margin-top:5px;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+    }
+
+    .main-nav{
+      display:flex;
+      align-items:center;
+      justify-content:center;
+      gap:8px;
+      padding:8px;
+      border:1px solid var(--line);
+      border-radius:999px;
+      background:rgba(255,255,255,.04);
+    }
+
+    .nav-link{
+      border:0;
+      background:transparent;
+      color:var(--muted);
+      padding:11px 15px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:.25s ease;
+      white-space:nowrap;
+      font-size:.92rem;
+    }
+    .nav-link:hover,.nav-link.active{background:rgba(255,122,0,.16);color:#fff}
+
+    .nav-actions{display:flex;align-items:center;gap:10px}
+    .menu-toggle{
+      display:none;
+      width:48px;height:48px;
+      border-radius:16px;
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.05);
+      color:white;
+      cursor:pointer;
+    }
+
+    .btn{
+      display:inline-flex;
+      align-items:center;
+      justify-content:center;
+      gap:9px;
+      border:1px solid transparent;
+      border-radius:999px;
+      padding:13px 18px;
+      min-height:48px;
+      font-weight:700;
+      cursor:pointer;
+      transition:.25s ease;
+      text-align:center;
+    }
+    .btn-primary{
+      background:linear-gradient(135deg,var(--orange),var(--gold));
+      color:#160d05;
+      box-shadow:0 16px 38px rgba(255,122,0,.25);
+    }
+    .btn-primary:hover{transform:translateY(-2px);box-shadow:0 20px 52px rgba(255,122,0,.34)}
+    .btn-secondary{
+      background:rgba(255,255,255,.06);
+      color:white;
+      border-color:var(--line);
+    }
+    .btn-secondary:hover{background:rgba(255,255,255,.1);border-color:rgba(255,122,0,.36);transform:translateY(-2px)}
+    .btn-small{padding:10px 13px;min-height:42px;font-size:.9rem}
+    .icon{width:18px;height:18px;stroke-width:2}
+
+    .hero{
+      position:relative;
+      min-height:calc(100vh - 86px);
+      display:grid;
+      align-items:center;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .hero.compact{min-height:520px}
+    .hero::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background-image:linear-gradient(90deg, rgba(0,0,0,.88), rgba(0,0,0,.58), rgba(0,0,0,.18)), var(--hero-img);
+      background-size:cover;
+      background-position:center;
+      z-index:-2;
+      transform:scale(1.02);
+    }
+    .hero::after{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:
+        radial-gradient(circle at 22% 35%, rgba(255,122,0,.25), transparent 23rem),
+        linear-gradient(180deg, rgba(7,7,7,.08), var(--bg) 98%);
+      z-index:-1;
+    }
+
+    .hero-content{
+      width:min(760px,100%);
+      padding:74px 0;
+    }
+    .eyebrow{
+      display:inline-flex;
+      align-items:center;
+      gap:10px;
+      color:#ffd3a5;
+      border:1px solid rgba(255,122,0,.32);
+      background:rgba(255,122,0,.11);
+      border-radius:999px;
+      padding:9px 13px;
+      font-weight:700;
+      font-size:.84rem;
+      letter-spacing:.06em;
+      text-transform:uppercase;
+      margin-bottom:22px;
+    }
+    .eyebrow::before{
+      content:"";
+      width:8px;height:8px;border-radius:50%;background:var(--orange);box-shadow:0 0 0 6px rgba(255,122,0,.15);
+    }
+    h1{
+      font-size:clamp(2.45rem, 6vw, 5.8rem);
+      line-height:.95;
+      letter-spacing:-.06em;
+      margin-bottom:22px;
+    }
+    .hero p{
+      color:var(--muted);
+      font-size:clamp(1rem,2.2vw,1.28rem);
+      line-height:1.75;
+      max-width:650px;
+    }
+    .hero-actions{display:flex;align-items:center;gap:14px;flex-wrap:wrap;margin-top:30px}
+    .hero-metrics{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:38px;
+      max-width:620px;
+    }
+    .metric{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.055);
+      border-radius:22px;
+      padding:18px;
+      backdrop-filter:blur(18px);
+    }
+    .metric strong{display:block;font-size:1.5rem;color:#fff;line-height:1}
+    .metric span{display:block;color:var(--muted);font-size:.84rem;margin-top:8px;line-height:1.4}
+
+    section.block{padding:86px 0}
+    .section-head{
+      display:flex;
+      align-items:end;
+      justify-content:space-between;
+      gap:24px;
+      margin-bottom:34px;
+    }
+    .section-title{max-width:710px}
+    .section-kicker{
+      color:var(--gold);
+      font-weight:800;
+      letter-spacing:.08em;
+      text-transform:uppercase;
+      font-size:.82rem;
+      margin-bottom:10px;
+    }
+    h2{
+      font-size:clamp(2rem,4vw,3.55rem);
+      line-height:1.02;
+      letter-spacing:-.045em;
+      margin-bottom:12px;
+    }
+    .section-title p,.text-muted{
+      color:var(--muted);
+      line-height:1.78;
+      font-size:1rem;
+    }
+
+    .about-grid{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:28px;
+      align-items:stretch;
+    }
+    .glass-card{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+      position:relative;
+      overflow:hidden;
+    }
+    .glass-card::before{
+      content:"";
+      position:absolute;
+      width:220px;height:220px;border-radius:50%;
+      background:rgba(255,122,0,.12);
+      filter:blur(30px);
+      right:-90px;top:-90px;
+      pointer-events:none;
+    }
+    .about-copy{position:relative;z-index:1}
+    .about-copy p{color:var(--muted);line-height:1.82;margin-bottom:16px}
+    .signature-line{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:12px;
+      margin-top:22px;
+    }
+    .signature-item{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.2);
+      border-radius:18px;
+      padding:16px;
+    }
+    .signature-item strong{display:block;margin-bottom:6px;color:#fff}
+    .signature-item span{color:var(--muted);font-size:.92rem;line-height:1.55}
+    .about-media{
+      min-height:470px;
+      border-radius:var(--radius);
+      background:
+        linear-gradient(180deg, rgba(0,0,0,.05), rgba(0,0,0,.72)),
+        url('https://images.unsplash.com/photo-1536935338788-846bb9981813?auto=format&fit=crop&w=1200&q=80') center/cover;
+      display:flex;
+      align-items:end;
+      padding:24px;
+      border:1px solid var(--line);
+      box-shadow:var(--shadow);
+      overflow:hidden;
+    }
+    .media-note{
+      width:100%;
+      border:1px solid rgba(255,255,255,.16);
+      background:rgba(0,0,0,.46);
+      backdrop-filter:blur(18px);
+      border-radius:22px;
+      padding:18px;
+    }
+    .media-note strong{display:block;font-size:1.08rem;margin-bottom:8px}
+    .media-note span{display:block;color:var(--muted);line-height:1.55}
+
+    .cocktail-motion{
+      overflow:hidden;
+      border-top:1px solid var(--line);
+      border-bottom:1px solid var(--line);
+      background:
+        radial-gradient(circle at center, rgba(255,122,0,.12), transparent 36rem),
+        rgba(255,255,255,.025);
+    }
+    .marquee-shell{display:grid;gap:18px;margin-top:30px}
+    .marquee-row{overflow:hidden;mask-image:linear-gradient(90deg, transparent, #000 8%, #000 92%, transparent)}
+    .marquee-track{
+      width:max-content;
+      display:flex;
+      gap:18px;
+      animation:scroll-left 42s linear infinite;
+      will-change:transform;
+    }
+    .marquee-row.reverse .marquee-track{animation-name:scroll-right;animation-duration:46s}
+    .marquee-row.slow .marquee-track{animation-duration:50s}
+    @keyframes scroll-left{from{transform:translateX(0)}to{transform:translateX(-50%)}}
+    @keyframes scroll-right{from{transform:translateX(-50%)}to{transform:translateX(0)}}
+    .drink-tile{
+      width:252px;
+      height:166px;
+      flex:0 0 auto;
+      position:relative;
+      border-radius:24px;
+      overflow:hidden;
+      border:1px solid rgba(255,255,255,.14);
+      box-shadow:0 18px 44px rgba(0,0,0,.35);
+      background:#111;
+    }
+    .drink-tile img{width:100%;height:100%;object-fit:cover;transition:transform .7s ease, filter .7s ease;filter:saturate(1.05) contrast(1.02)}
+    .drink-tile:hover img{transform:scale(1.08);filter:saturate(1.22) contrast(1.08)}
+    .tile-label{
+      position:absolute;
+      left:12px;bottom:12px;
+      display:inline-flex;
+      padding:8px 10px;
+      border-radius:999px;
+      background:rgba(0,0,0,.58);
+      color:white;
+      border:1px solid rgba(255,255,255,.18);
+      backdrop-filter:blur(14px);
+      font-size:.78rem;
+      font-weight:750;
+    }
+    .motion-cta{display:flex;justify-content:center;margin-top:36px}
+
+    .trust-grid,.service-grid{
+      display:grid;
+      grid-template-columns:repeat(4,minmax(0,1fr));
+      gap:16px;
+    }
+    .trust-card,.service-card,.catalog-card,.gallery-card,.choice-card{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border-radius:24px;
+      padding:22px;
+      transition:.25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .trust-card:hover,.service-card:hover,.catalog-card:hover,.choice-card:hover{transform:translateY(-5px);border-color:rgba(255,122,0,.34);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+    .card-icon{
+      width:48px;height:48px;border-radius:17px;
+      display:grid;place-items:center;
+      color:#170b02;
+      background:linear-gradient(135deg,var(--orange),var(--gold));
+      margin-bottom:18px;
+    }
+    .card-icon .icon{width:22px;height:22px}
+    .trust-card h3,.service-card h3,.choice-card h3{font-size:1.05rem;margin-bottom:10px;line-height:1.25}
+    .trust-card p,.service-card p,.choice-card p{color:var(--muted);line-height:1.65;font-size:.94rem}
+
+    .page-hero-title{max-width:820px}
+    .split-layout{
+      display:grid;
+      grid-template-columns:.92fr 1.08fr;
+      gap:24px;
+      align-items:start;
+    }
+    .sticky-box{position:sticky;top:106px}
+
+    .filter-bar{
+      display:flex;
+      align-items:center;
+      gap:10px;
+      flex-wrap:wrap;
+      margin-bottom:26px;
+    }
+    .filter-btn,.choice-btn{
+      border:1px solid var(--line);
+      color:var(--muted);
+      background:rgba(255,255,255,.045);
+      padding:11px 14px;
+      border-radius:999px;
+      cursor:pointer;
+      transition:.22s ease;
+      font-weight:700;
+      font-size:.9rem;
+    }
+    .filter-btn:hover,.filter-btn.active,.choice-btn:hover,.choice-btn.active{
+      color:#170b02;
+      background:linear-gradient(135deg,var(--orange),var(--gold));
+      border-color:transparent;
+      box-shadow:0 14px 30px rgba(255,122,0,.20);
+    }
+
+    .catalog-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+    .catalog-card{padding:0;overflow:hidden}
+    .catalog-image{height:216px;overflow:hidden;background:#111}
+    .catalog-image img{width:100%;height:100%;object-fit:cover;transition:transform .55s ease}
+    .catalog-card:hover img{transform:scale(1.07)}
+    .catalog-content{padding:20px}
+    .catalog-top{display:flex;align-items:start;justify-content:space-between;gap:12px;margin-bottom:10px}
+    .catalog-content h3{font-size:1.08rem;line-height:1.2}
+    .tag{
+      display:inline-flex;
+      padding:7px 10px;
+      border-radius:999px;
+      background:rgba(255,122,0,.13);
+      color:#ffd0a0;
+      border:1px solid rgba(255,122,0,.24);
+      font-size:.75rem;
+      font-weight:800;
+      white-space:nowrap;
+    }
+    .catalog-content p{color:var(--muted);line-height:1.58;font-size:.93rem;margin-bottom:16px}
+
+    .event-picker{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-bottom:18px;
+    }
+    .recommendation{
+      border:1px solid rgba(255,122,0,.28);
+      background:linear-gradient(145deg, rgba(255,122,0,.14), rgba(255,255,255,.04));
+      border-radius:24px;
+      padding:24px;
+      min-height:150px;
+    }
+    .recommendation h3{margin-bottom:10px;font-size:1.25rem}
+    .recommendation p{color:var(--muted);line-height:1.75}
+
+    .pack-builder{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:14px;
+    }
+    .pack-option{
+      position:relative;
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.045);
+      padding:18px;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .pack-option input{position:absolute;opacity:0;pointer-events:none}
+    .pack-option strong{display:block;margin-bottom:7px}
+    .pack-option span{display:block;color:var(--muted);font-size:.9rem;line-height:1.5}
+    .pack-option:has(input:checked){border-color:rgba(255,122,0,.55);background:rgba(255,122,0,.12);box-shadow:0 0 0 5px rgba(255,122,0,.07)}
+
+    .gallery-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+    .gallery-card{
+      padding:0;
+      height:330px;
+      cursor:pointer;
+      border-radius:26px;
+      overflow:hidden;
+      isolation:isolate;
+    }
+    .gallery-card img{width:100%;height:100%;object-fit:cover;transition:transform .65s ease, filter .65s ease}
+    .gallery-card:hover img{transform:scale(1.08);filter:saturate(1.18)}
+    .gallery-overlay{
+      position:absolute;
+      inset:auto 14px 14px 14px;
+      padding:16px;
+      border-radius:20px;
+      background:rgba(0,0,0,.56);
+      border:1px solid rgba(255,255,255,.15);
+      backdrop-filter:blur(16px);
+    }
+    .gallery-overlay strong{display:block;margin-bottom:6px}
+    .gallery-overlay span{display:block;color:var(--muted);font-size:.86rem;line-height:1.45}
+
+    .contact-layout{
+      display:grid;
+      grid-template-columns:.85fr 1.15fr;
+      gap:24px;
+      align-items:start;
+    }
+    .contact-aside{position:sticky;top:106px}
+    .info-list{display:grid;gap:13px;margin-top:22px}
+    .info-line{
+      display:flex;gap:12px;align-items:flex-start;
+      border:1px solid var(--line);
+      border-radius:18px;
+      padding:15px;
+      background:rgba(255,255,255,.04);
+    }
+    .info-line .icon{color:var(--gold);flex:0 0 auto;margin-top:2px}
+    .info-line strong{display:block;margin-bottom:4px}
+    .info-line span{display:block;color:var(--muted);line-height:1.55;font-size:.92rem}
+
+    form{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border-radius:var(--radius);
+      padding:24px;
+      box-shadow:var(--shadow);
+    }
+    .form-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:15px;
+    }
+    .field{display:grid;gap:8px}
+    .field.full{grid-column:1/-1}
+    label{font-weight:750;color:#f6eee5;font-size:.92rem}
+    input,select,textarea{
+      width:100%;
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.34);
+      color:#fff;
+      border-radius:16px;
+      padding:14px 14px;
+      outline:none;
+      transition:.22s ease;
+    }
+    input:focus,select:focus,textarea:focus{border-color:rgba(255,122,0,.55);box-shadow:0 0 0 5px rgba(255,122,0,.09)}
+    textarea{min-height:122px;resize:vertical}
+    option{background:#111;color:#fff}
+    .form-note{color:var(--muted);font-size:.9rem;line-height:1.55;margin:16px 0 0}
+    .selected-drinks{
+      display:flex;
+      flex-wrap:wrap;
+      gap:8px;
+      min-height:18px;
+      margin-top:10px;
+    }
+    .pill{
+      display:inline-flex;
+      align-items:center;
+      gap:8px;
+      border-radius:999px;
+      background:rgba(255,122,0,.13);
+      color:#ffd1a4;
+      border:1px solid rgba(255,122,0,.22);
+      padding:8px 10px;
+      font-size:.82rem;
+      font-weight:750;
+    }
+    .pill button{background:transparent;border:0;color:inherit;cursor:pointer;font-weight:900}
+
+    .modal{
+      position:fixed;
+      inset:0;
+      background:rgba(0,0,0,.82);
+      backdrop-filter:blur(14px);
+      z-index:200;
+      display:none;
+      align-items:center;
+      justify-content:center;
+      padding:20px;
+    }
+    .modal.active{display:flex}
+    .modal-card{
+      width:min(980px,100%);
+      background:#0c0c0c;
+      border:1px solid var(--line);
+      border-radius:28px;
+      overflow:hidden;
+      box-shadow:0 34px 90px rgba(0,0,0,.55);
+      position:relative;
+    }
+    .modal-card img{width:100%;max-height:72vh;object-fit:cover}
+    .modal-caption{padding:18px 22px;display:flex;justify-content:space-between;gap:16px;align-items:center}
+    .modal-caption span{color:var(--muted)}
+    .modal-close{
+      width:44px;height:44px;border-radius:16px;border:1px solid var(--line);
+      background:rgba(255,255,255,.08);color:#fff;cursor:pointer;
+      display:grid;place-items:center;flex:0 0 auto;
+    }
+
+    .toast{
+      position:fixed;
+      right:20px;
+      bottom:20px;
+      z-index:300;
+      background:rgba(16,16,16,.94);
+      border:1px solid rgba(255,122,0,.35);
+      border-radius:18px;
+      color:#fff;
+      padding:14px 16px;
+      box-shadow:0 18px 60px rgba(0,0,0,.35);
+      transform:translateY(24px);
+      opacity:0;
+      pointer-events:none;
+      transition:.25s ease;
+      max-width:min(380px, calc(100% - 40px));
+    }
+    .toast.active{opacity:1;transform:translateY(0)}
+
+    .site-footer{
+      border-top:1px solid var(--line);
+      background:rgba(0,0,0,.45);
+      padding:32px 0;
+      color:var(--muted);
+    }
+    .footer-grid{
+      display:flex;
+      justify-content:space-between;
+      gap:20px;
+      flex-wrap:wrap;
+      align-items:center;
+    }
+    .footer-links{display:flex;gap:12px;flex-wrap:wrap}
+    .footer-links button{background:transparent;border:0;color:var(--muted);cursor:pointer}
+    .footer-links button:hover{color:#fff}
+
+    @media (max-width: 1060px){
+      .main-nav{
+        position:fixed;
+        top:84px;
+        left:16px;
+        right:16px;
+        display:grid;
+        border-radius:24px;
+        padding:12px;
+        transform:translateY(-18px);
+        opacity:0;
+        pointer-events:none;
+        transition:.25s ease;
+        background:rgba(12,12,12,.96);
+        box-shadow:0 22px 80px rgba(0,0,0,.52);
+      }
+      body.menu-open .main-nav{opacity:1;pointer-events:auto;transform:translateY(0)}
+      .nav-link{width:100%;text-align:left;border-radius:17px}
+      .menu-toggle{display:grid;place-items:center}
+      .nav-actions .btn{display:none}
+      .about-grid,.split-layout,.contact-layout{grid-template-columns:1fr}
+      .sticky-box,.contact-aside{position:relative;top:0}
+      .trust-grid,.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .catalog-grid,.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .event-picker,.pack-builder{grid-template-columns:repeat(2,minmax(0,1fr))}
+    }
+
+    @media (max-width: 720px){
+      .container,.nav-wrap{width:min(100% - 24px, var(--max))}
+      .page{padding-top:78px}
+      .nav-wrap{min-height:74px}
+      .brand-logo{width:48px;height:48px;border-radius:15px}
+      .brand-text span{display:none}
+      .hero,.hero.compact{min-height:620px}
+      .hero-content{padding:54px 0}
+      .hero-actions{align-items:stretch}
+      .hero-actions .btn{width:100%}
+      .hero-metrics{grid-template-columns:1fr;gap:10px}
+      section.block{padding:62px 0}
+      .section-head{display:grid;gap:16px}
+      .about-media{min-height:350px}
+      .signature-line,.trust-grid,.service-grid,.catalog-grid,.gallery-grid,.event-picker,.pack-builder,.form-grid{grid-template-columns:1fr}
+      .field.full{grid-column:auto}
+      .drink-tile{width:210px;height:144px;border-radius:20px}
+      .marquee-track{gap:12px}
+      .gallery-card{height:290px}
+      .modal-caption{display:grid}
+      .footer-grid{display:grid}
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="#" data-go="home" aria-label="Lio Ice Style">
+        <img class="brand-logo" src="data:image/jpeg;base64,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" alt="Logo Lio Ice Style" />
+        <span class="brand-text"><strong>Lio Ice Style</strong><span>Bar mobile depuis 2017</span></span>
+      </a>
+
+      <nav class="main-nav" aria-label="Navigation principale">
+        <button class="nav-link active" data-page="home">Accueil</button>
+        <button class="nav-link" data-page="services">Services & Catalogue</button>
+        <button class="nav-link" data-page="realisations">Réalisations</button>
+        <button class="nav-link" data-page="reservation">Réservation & Contact</button>
+      </nav>
+
+      <div class="nav-actions">
+        <button class="btn btn-primary btn-small" data-go="reservation">Réserver</button>
+        <button class="menu-toggle" id="menuToggle" aria-label="Ouvrir le menu">
+          <i data-lucide="menu" class="icon"></i>
+        </button>
+      </div>
+    </div>
+  </header>
+
+  <main>
+    <section class="page active" id="home">
+      <div class="hero" style="--hero-img:url('https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1800&q=80')">
+        <div class="container">
+          <div class="hero-content">
+            <span class="eyebrow">Bar mobile & cocktail sur mesure</span>
+            <h1>Des cocktails d’exception pour vos plus beaux événements.</h1>
+            <p>Lio Ice Style vous accompagne depuis 2017 : un bar élégant, des créations uniques et une équipe passionnée pour transformer chaque réception en moment inoubliable.</p>
+            <div class="hero-actions">
+              <button class="btn btn-primary" data-go="services">Découvrir nos créations</button>
+              <button class="btn btn-secondary" data-go="reservation">Demander un devis</button>
+            </div>
+            <div class="hero-metrics" aria-label="Informations clés">
+              <div class="metric"><strong>2017</strong><span>Année de création – une solide expérience terrain.</span></div>
+              <div class="metric"><strong>100% mobile</strong><span>Notre bar s’adapte à votre lieu, partout.</span></div>
+              <div class="metric"><strong>Sur mesure</strong><span>Chaque prestation est unique, comme votre événement.</span></div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <section class="block" id="about">
+        <div class="container">
+          <div class="about-grid">
+            <div class="glass-card">
+              <div class="about-copy">
+                <p class="section-kicker">Notre histoire</p>
+                <h2>L’art du cocktail au service de vos plus belles fêtes.</h2>
+                <p>Depuis 2017, Lio Ice Style sublime les événements privés et professionnels : mariages, anniversaires, séminaires, soirées d’entreprise. Nous apportons une vraie valeur ajoutée à votre réception : un bar design, des cocktails signature et un service attentionné.</p>
+                <p>Notre approche ? Allier l’élégance des présentations à la convivialité d’un service fluide. Chaque cocktail est pensé pour créer une expérience visuelle et gustative qui marque les esprits.</p>
+                <div class="signature-line">
+                  <div class="signature-item"><strong>Élégance</strong><span>Un bar soigné, des verrines raffinées.</span></div>
+                  <div class="signature-item"><strong>Ambiance</strong><span>Des créations qui invitent à la fête.</span></div>
+                  <div class="signature-item"><strong>Personnalisation</strong><span>Des recettes adaptées à votre thème.</span></div>
+                  <div class="signature-item"><strong>Professionnalisme</strong><span>Une équipe dédiée, discrète et efficace.</span></div>
+                </div>
+              </div>
+            </div>
+            <div class="about-media">
+              <div class="media-note">
+                <strong>Un bar qui fait la différence.</strong>
+                <span>Plus qu’un service de boissons, Lio Ice Style crée un véritable point d’attraction pour vos invités.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block cocktail-motion">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Nos inspirations</p>
+              <h2>Un aperçu de notre univers liquide.</h2>
+              <p>Couleurs, textures, verrines originales… Découvrez l’esthétique de nos créations.</p>
+            </div>
+          </div>
+        </div>
+        <div class="marquee-shell" id="marqueeShell"></div>
+        <div class="container motion-cta">
+          <button class="btn btn-primary" data-go="services">Explorer le catalogue</button>
+        </div>
+      </section>
+
+      <section class="block">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Pourquoi nous choisir</p>
+              <h2>Une prestation tout-en-un qui vous simplifie la vie.</h2>
+              <p>Lio Ice Style, c’est la garantie d’un service complet, visuellement impactant et parfaitement orchestré.</p>
+            </div>
+          </div>
+          <div class="trust-grid">
+            <article class="trust-card"><div class="card-icon"><i data-lucide="badge-check" class="icon"></i></div><h3>Expérience depuis 2017</h3><p>Des centaines d’événements à notre actif, des retours clients enthousiastes.</p></article>
+            <article class="trust-card"><div class="card-icon"><i data-lucide="truck" class="icon"></i></div><h3>Service itinérant</h3><p>Nous nous déplaçons avec notre matériel, installons le bar où vous le souhaitez.</p></article>
+            <article class="trust-card"><div class="card-icon"><i data-lucide="sparkles" class="icon"></i></div><h3>Présentation soignée</h3><p>Chaque verre, chaque garniture est travaillé pour l’esthétique comme pour le goût.</p></article>
+            <article class="trust-card"><div class="card-icon"><i data-lucide="briefcase-business" class="icon"></i></div><h3>Privé & Corporate</h3><p>Mariages, anniversaires, lancements de produit, conférences – nous nous adaptons à tous les formats.</p></article>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="services">
+      <div class="hero compact" style="--hero-img:url('https://images.unsplash.com/photo-1497534446932-c925b458314e?auto=format&fit=crop&w=1800&q=80')">
+        <div class="container">
+          <div class="hero-content page-hero-title">
+            <span class="eyebrow">Nos prestations</span>
+            <h1>Des formules pensées pour chaque occasion.</h1>
+            <p>Que vous organisiez une garden-party ou un gala d’entreprise, nous construisons ensemble la solution idéale.</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="block">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Services</p>
+              <h2>Un bar mobile sur mesure.</h2>
+              <p>Choisissez les options qui correspondent à votre besoin, nous nous chargeons du reste.</p>
+            </div>
+          </div>
+          <div class="service-grid" id="serviceGrid"></div>
+        </div>
+      </section>
+
+      <section class="block" style="padding-top:0">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Cocktails signature</p>
+              <h2>Des recettes uniques, fraîches et photogéniques.</h2>
+              <p>Filtrez par style et ajoutez vos favoris à votre demande de devis.</p>
+            </div>
+            <button class="btn btn-secondary" data-go="reservation">Composer ma commande</button>
+          </div>
+          <div class="filter-bar" id="catalogFilters"></div>
+          <div class="catalog-grid" id="catalogGrid"></div>
+        </div>
+      </section>
+
+      <section class="block" style="padding-top:0">
+        <div class="container split-layout">
+          <div class="glass-card sticky-box">
+            <p class="section-kicker">Conseil personnalisé</p>
+            <h2>Quelle ambiance pour votre événement ?</h2>
+            <p class="text-muted">Indiquez-nous le type de réception, nous vous suggérons la formule la plus adaptée.</p>
+          </div>
+          <div>
+            <div class="event-picker" id="eventPicker"></div>
+            <div class="recommendation" id="eventRecommendation"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="block" style="padding-top:0">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Pack personnalisable</p>
+              <h2>Composez votre prestation idéale.</h2>
+              <p>Sélectionnez les options qui vous intéressent, nous établirons un devis sur mesure.</p>
+            </div>
+          </div>
+          <div class="pack-builder" id="servicePackBuilder"></div>
+          <div style="margin-top:24px">
+            <button class="btn btn-primary" data-go="reservation">Demander un devis</button>
+          </div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="realisations">
+      <div class="hero compact" style="--hero-img:url('https://images.unsplash.com/photo-1519671482749-fd09be7ccebf?auto=format&fit=crop&w=1800&q=80')">
+        <div class="container">
+          <div class="hero-content page-hero-title">
+            <span class="eyebrow">Notre portfolio</span>
+            <h1>Inspirez-vous de nos réalisations.</h1>
+            <p>Mariages, soirées privées, corporate… Découvrez l’univers Lio Ice Style en images.</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="block">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Galerie</p>
+              <h2>Des ambiances et des cocktails qui parlent d’eux-mêmes.</h2>
+              <p>Filtrez par type d’événement pour visualiser ce que nous pouvons réaliser pour vous.</p>
+            </div>
+          </div>
+          <div class="filter-bar" id="galleryFilters"></div>
+          <div class="gallery-grid" id="galleryGrid"></div>
+        </div>
+      </section>
+    </section>
+
+    <section class="page" id="reservation">
+      <div class="hero compact" style="--hero-img:url('https://images.unsplash.com/photo-1575444758702-4a6b9222336e?auto=format&fit=crop&w=1800&q=80')">
+        <div class="container">
+          <div class="hero-content page-hero-title">
+            <span class="eyebrow">Contact & devis</span>
+            <h1>Parlons de votre projet.</h1>
+            <p>Remplissez le formulaire, nous vous répondrons sous 24h avec une proposition détaillée.</p>
+          </div>
+        </div>
+      </div>
+
+      <section class="block">
+        <div class="container contact-layout">
+          <aside class="glass-card contact-aside">
+            <p class="section-kicker">Informations pratiques</p>
+            <h2>Une demande claire = un devis précis.</h2>
+            <p class="text-muted">Plus vous nous en direz sur votre événement, plus nous pourrons vous proposer une prestation adaptée.</p>
+            <div class="info-list">
+              <div class="info-line"><i data-lucide="clock" class="icon"></i><div><strong>Réservez tôt</strong><span>Idéalement dès que la date est fixée, surtout en haute saison (mai-octobre).</span></div></div>
+              <div class="info-line"><i data-lucide="map-pin" class="icon"></i><div><strong>Partout en France</strong><span>Nous nous déplaçons avec notre matériel. Le transport est inclus dans nos devis.</span></div></div>
+              <div class="info-line"><i data-lucide="message-circle" class="icon"></i><div><strong>Devis sous 24h</strong><span>Via WhatsApp ou email, nous répondons rapidement à toute demande.</span></div></div>
+            </div>
+          </aside>
+
+          <form id="bookingForm">
+            <div class="form-grid">
+              <div class="field"><label for="fullName">Nom complet</label><input id="fullName" name="fullName" type="text" placeholder="Votre nom" required /></div>
+              <div class="field"><label for="clientPhone">Téléphone (WhatsApp)</label><input id="clientPhone" name="clientPhone" type="tel" placeholder="Exemple : +243 979 589 05" required /></div>
+              <div class="field"><label for="eventType">Type d’événement</label><select id="eventType" name="eventType" required><option value="">Sélectionner</option><option>Mariage</option><option>Anniversaire</option><option>Événement corporate</option><option>Cérémonie privée</option><option>Exposition ou stand</option><option>Atelier cocktail</option><option>Autre événement privé</option></select></div>
+              <div class="field"><label for="eventDate">Date souhaitée</label><input id="eventDate" name="eventDate" type="date" required /></div>
+              <div class="field"><label for="eventPlace">Lieu de l’événement</label><input id="eventPlace" name="eventPlace" type="text" placeholder="Ville, adresse complète" required /></div>
+              <div class="field"><label for="guestCount">Nombre d’invités estimé</label><input id="guestCount" name="guestCount" type="number" min="1" placeholder="Exemple : 80" required /></div>
+              <div class="field full"><label for="serviceType">Type de prestation souhaitée</label><select id="serviceType" name="serviceType" required><option value="">Sélectionner</option><option>Bar mobile complet</option><option>Cocktails personnalisés</option><option>Boissons fraîches</option><option>Prestation mariage</option><option>Prestation corporate</option><option>Atelier cocktail</option><option>Service sur stand</option><option>Conseil personnalisé</option></select></div>
+              <div class="field full">
+                <label>Pack souhaité</label>
+                <div class="pack-builder" id="bookingPackBuilder"></div>
+              </div>
+              <div class="field full">
+                <label for="wantedDrinks">Cocktails ou boissons souhaités</label>
+                <textarea id="wantedDrinks" name="wantedDrinks" placeholder="Exemple : cocktails fruités, sans alcool, un cocktail signature..." required></textarea>
+                <div class="selected-drinks" id="selectedDrinks"></div>
+              </div>
+              <div class="field full"><label for="message">Informations complémentaires</label><textarea id="message" name="message" placeholder="Décrivez votre projet (ambiance, horaires, thème, contraintes particulières)."></textarea></div>
+            </div>
+            <p class="form-note">En cliquant sur "Envoyer", vous serez redirigé vers WhatsApp pour finaliser votre demande.</p>
+            <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+              <button class="btn btn-primary" type="submit">Envoyer la demande</button>
+              <button class="btn btn-secondary" type="reset">Effacer le formulaire</button>
+            </div>
+          </form>
+        </div>
+      </section>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="container footer-grid">
+      <div>
+        <strong style="color:#fff">Lio Ice Style</strong>
+        <div>Bar mobile & cocktails d’auteur – depuis 2017.</div>
+      </div>
+      <div class="footer-links">
+        <button data-go="home">Accueil</button>
+        <button data-go="services">Services</button>
+        <button data-go="realisations">Réalisations</button>
+        <button data-go="reservation">Contact</button>
+      </div>
+    </div>
+  </footer>
+
+  <div class="modal" id="imageModal" aria-hidden="true">
+    <div class="modal-card">
+      <img id="modalImage" src="" alt="Réalisation Lio Ice Style" />
+      <div class="modal-caption">
+        <div><strong id="modalTitle"></strong><span id="modalText"></span></div>
+        <button class="modal-close" id="modalClose" aria-label="Fermer"><i data-lucide="x" class="icon"></i></button>
+      </div>
+    </div>
+  </div>
+
+  <div class="toast" id="toast"></div>
+
+  <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+  <script>
+    const WHATSAPP_NUMBER = "24397958905";
+
+    const img = (id, w = 900) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
+
+    const marqueeRows = [
+      [
+        [img('photo-1497534446932-c925b458314e'), 'Cocktail signature'],
+        [img('photo-1551024709-8f23befc6f87'), 'Sans alcool'],
+        [img('photo-1575444758702-4a6b9222336e'), 'Bar mobile'],
+        [img('photo-1544145945-f90425340c7e'), 'Événement privé'],
+        [img('photo-1514362545857-3bc16c4c7d1b'), 'Corporate'],
+        [img('photo-1536935338788-846bb9981813'), 'Atelier cocktail']
+      ],
+      [
+        [img('photo-1560508179-b2c9a3f8e92b'), 'Mariage'],
+        [img('photo-1500217052183-bc01eee1a74e'), 'Boissons fraîches'],
+        [img('photo-1567696911980-2eed69a46042'), 'Détails premium'],
+        [img('photo-1609951651556-5334e2706168'), 'Cocktail fruité'],
+        [img('photo-1470337458703-46ad1756a187'), 'Bar mobile'],
+        [img('photo-1527529482837-4698179dc6ce'), 'Réception']
+      ],
+      [
+        [img('photo-1532635241-17e820acc59f'), 'Cocktail doux'],
+        [img('photo-1513558161293-cdaf765ed2fd'), 'Cocktail premium'],
+        [img('photo-1527661591475-527312dd65f5'), 'Fruits et glaçons'],
+        [img('photo-1528823872057-9c018a7a7553'), 'Cérémonie'],
+        [img('photo-1543007630-9710e4a00a20'), 'Stand événementiel'],
+        [img('photo-1563223771-375783ee91ad'), 'Ambiance festive']
+      ]
+    ];
+
+    const services = [
+      ['wine', 'Bar mobile complet', 'Installation d’un bar design, vaisselle, équipement et service. Idéal pour un cocktail dinatoire.'],
+      ['glass-water', 'Cocktails personnalisés', 'Nous créons 2 à 3 recettes exclusives pour votre événement, en accord avec vos goûts et votre thème.'],
+      ['snowflake', 'Boissons fraîches', 'Une sélection de softs, jus, eaux aromatisées et mocktails pour les invités qui ne consomment pas d’alcool.'],
+      ['heart-handshake', 'Prestations mariage', 'Service complet : vin d’honneur, cocktail, open bar animé par nos barmans.'],
+      ['briefcase-business', 'Prestations corporate', 'Soirée d’entreprise, séminaire, afterwork : un service professionnel et efficace.'],
+      ['party-popper', 'Anniversaires et fêtes privées', 'Ambiance festive assurée avec des cocktails hauts en couleur et un bar à disposition.'],
+      ['graduation-cap', 'Ateliers cocktails', 'Animation participative : les invités apprennent à réaliser et déguster leurs propres créations.'],
+      ['sparkles', 'Cérémonies et réceptions', 'Un accompagnement sur mesure pour vos événements familiaux ou religieux.']
+    ];
+
+    const catalogCategories = ['Tous', 'Cocktails fruités', 'Cocktails frais', 'Cocktails doux', 'Cocktails premium', 'Cocktails sans alcool', 'Cocktails pour mariage', 'Cocktails corporate'];
+    const cocktails = [
+      {name:'Sunset Passion', type:'Cocktails fruités', label:'Fruité', desc:'Mélange de fruits de la passion, mangue et citron vert. Un voyage exotique.', image:img('photo-1551024709-8f23befc6f87')},
+      {name:'Fresh Garden', type:'Cocktails frais', label:'Frais', desc:'Concombre, menthe, fleur de sureau. Légèreté et élégance.', image:img('photo-1513558161293-cdaf765ed2fd')},
+      {name:'Golden Ceremony', type:'Cocktails pour mariage', label:'Mariage', desc:'Champagne, liqueur de pêche et éclats d’or. Une coupe raffinée.', image:img('photo-1560508179-b2c9a3f8e92b')},
+      {name:'Velvet Sweet', type:'Cocktails doux', label:'Doux', desc:'Lait d’amande, vanille, cannelle. Une boisson onctueuse et réconfortante.', image:img('photo-1532635241-17e820acc59f')},
+      {name:'Lio Signature', type:'Cocktails premium', label:'Premium', desc:'Gin infusé, miel de montagne, romarin. Notre création exclusive.', image:img('photo-1544145945-f90425340c7e')},
+      {name:'Virgin Berry Ice', type:'Cocktails sans alcool', label:'Sans alcool', desc:'Purée de fruits rouges, citron, eau pétillante. Fraîcheur garantie.', image:img('photo-1497534446932-c925b458314e')},
+      {name:'Corporate Citrus', type:'Cocktails corporate', label:'Corporate', desc:'Yuzu, verveine, tonic. Un cocktail désaltérant et professionnel.', image:img('photo-1514362545857-3bc16c4c7d1b')},
+      {name:'Tropical Ice', type:'Cocktails fruités', label:'Fruité', desc:'Ananas, rhum blanc, citron vert. Idéal pour une ambiance estivale.', image:img('photo-1609951651556-5334e2706168')},
+      {name:'Clear Mint', type:'Cocktails frais', label:'Frais', desc:'Mojito revisité sans alcool, menthe, citron, eau gazeuse.', image:img('photo-1527661591475-527312dd65f5')}
+    ];
+
+    const recommendations = {
+      'Mariage': ['Mariage élégant', 'Pour un mariage, nous vous proposons un bar mobile raffiné avec des cocktails signature, un service de vin d’honneur et une décoration assortie à votre thème.'],
+      'Anniversaire': ['Anniversaire festif', 'Un bar animé, des cocktails colorés et une ambiance survoltée : l’idéal pour une fête mémorable.'],
+      'Événement corporate': ['Corporate professionnel', 'Un service fluide, des recettes élégantes et un personnel en tenue adaptée pour vos afterworks ou séminaires.'],
+      'Cérémonie privée': ['Cérémonie privée', 'Une prestation discrète et raffinée, avec des mocktails et des boissons chaudes si nécessaire.'],
+      'Exposition ou stand': ['Stand attractif', 'Nous créons un bar éphémère qui attire le chaland et valorise votre marque (logo sur serviettes, recettes personnalisées).'],
+      'Atelier cocktail': ['Atelier interactif', 'Un moment convivial où vos invités deviennent bartenders. Ingrédients, matériel et animation inclus.']
+    };
+
+    const packOptions = [
+      ['Bar mobile', 'Mobilier, verrerie, glaçon, décor.'],
+      ['Cocktails personnalisés', 'Création sur mesure de 2 à 3 recettes.'],
+      ['Boissons fraîches', 'Softs, jus, eaux aromatisées, mocktails.'],
+      ['Équipe de service', 'Barmans professionnels (1 pour 50 pers. recommandé).'],
+      ['Atelier cocktail', 'Animation interactive d’1h30.'],
+      ['Décoration du bar', 'Lumières, fleurs, nappage sur mesure.']
+    ];
+
+    const galleryCategories = ['Tous','Cocktails','Mariages','Événements privés','Corporate','Ateliers cocktails','Bars mobiles','Stands & expositions'];
+    const gallery = [
+      {title:'Cocktail signature', cat:'Cocktails', text:'Notre création Lio Signature, servie lors d’un gala.', image:img('photo-1551024709-8f23befc6f87', 1000)},
+      {title:'Bar mobile mariage', cat:'Mariages', text:'Installation champêtre pour un mariage en extérieur.', image:img('photo-1519671482749-fd09be7ccebf', 1000)},
+      {title:'Réception corporate', cat:'Corporate', text:'Un bar sobre et élégant pour une soirée d’entreprise.', image:img('photo-1514362545857-3bc16c4c7d1b', 1000)},
+      {title:'Anniversaire privé', cat:'Événements privés', text:'Ambiance lounge et cocktails fruités.', image:img('photo-1527529482837-4698179dc6ce', 1000)},
+      {title:'Atelier cocktail', cat:'Ateliers cocktails', text:'Participants en pleine préparation, encadrés par notre barman.', image:img('photo-1536935338788-846bb9981813', 1000)},
+      {title:'Stand événementiel', cat:'Stands & expositions', text:'Bar mobile intégré à un stand pour une marque de spiritueux.', image:img('photo-1543007630-9710e4a00a20', 1000)},
+      {title:'Bar mobile design', cat:'Bars mobiles', text:'Notre bar emblématique, en acier et bois.', image:img('photo-1575444758702-4a6b9222336e', 1000)},
+      {title:'Cocktail premium', cat:'Cocktails', text:'Verre à pied, zestes d’agrumes, glaçon maison.', image:img('photo-1544145945-f90425340c7e', 1000)},
+      {title:'Soirée privée', cat:'Événements privés', text:'Service au verre et petite restauration possible.', image:img('photo-1470337458703-46ad1756a187', 1000)}
+    ];
+
+    let selectedCocktails = [];
+
+    function initIcons(){
+      if(window.lucide){ lucide.createIcons(); }
+    }
+
+    function showToast(message){
+      const toast = document.getElementById('toast');
+      toast.textContent = message;
+      toast.classList.add('active');
+      clearTimeout(window.toastTimer);
+      window.toastTimer = setTimeout(() => toast.classList.remove('active'), 2600);
+    }
+
+    function setPage(pageId){
+      document.querySelectorAll('.page').forEach(page => page.classList.toggle('active', page.id === pageId));
+      document.querySelectorAll('.nav-link').forEach(link => link.classList.toggle('active', link.dataset.page === pageId));
+      document.body.classList.remove('menu-open');
+      window.scrollTo({top:0, behavior:'smooth'});
+      initIcons();
+    }
+
+    function renderMarquees(){
+      const shell = document.getElementById('marqueeShell');
+      shell.innerHTML = marqueeRows.map((row, index) => {
+        const items = [...row, ...row].map(([src,label]) => `
+          <figure class="drink-tile">
+            <img src="${src}" alt="${label} Lio Ice Style" loading="lazy">
+            <figcaption class="tile-label">${label}</figcaption>
+          </figure>`).join('');
+        return `<div class="marquee-row ${index === 1 ? 'reverse' : ''} ${index === 2 ? 'slow' : ''}"><div class="marquee-track">${items}</div></div>`;
+      }).join('');
+    }
+
+    function renderServices(){
+      const grid = document.getElementById('serviceGrid');
+      grid.innerHTML = services.map(([icon,title,desc]) => `
+        <article class="service-card">
+          <div class="card-icon"><i data-lucide="${icon}" class="icon"></i></div>
+          <h3>${title}</h3>
+          <p>${desc}</p>
+        </article>`).join('');
+    }
+
+    function renderCatalogFilters(){
+      const wrap = document.getElementById('catalogFilters');
+      wrap.innerHTML = catalogCategories.map((cat, index) => `<button class="filter-btn ${index === 0 ? 'active' : ''}" data-catalog-filter="${cat}">${cat}</button>`).join('');
+      wrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-catalog-filter]');
+        if(!btn) return;
+        wrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderCatalog(btn.dataset.catalogFilter);
+      });
+    }
+
+    function renderCatalog(filter='Tous'){
+      const grid = document.getElementById('catalogGrid');
+      const data = filter === 'Tous' ? cocktails : cocktails.filter(item => item.type === filter);
+      grid.innerHTML = data.map(item => `
+        <article class="catalog-card">
+          <div class="catalog-image"><img src="${item.image}" alt="${item.name}" loading="lazy"></div>
+          <div class="catalog-content">
+            <div class="catalog-top"><h3>${item.name}</h3><span class="tag">${item.label}</span></div>
+            <p>${item.desc}</p>
+            <button class="btn btn-secondary btn-small" data-add-cocktail="${item.name}">Ajouter à ma sélection</button>
+          </div>
+        </article>`).join('');
+      initIcons();
+    }
+
+    function addCocktail(name){
+      if(!selectedCocktails.includes(name)){ selectedCocktails.push(name); }
+      updateSelectedCocktails();
+      const textarea = document.getElementById('wantedDrinks');
+      const current = textarea.value.trim();
+      textarea.value = selectedCocktails.join(', ') + (current && !selectedCocktails.some(n => current.includes(n)) ? `, ${current}` : '');
+      showToast(`${name} a été ajouté à votre sélection.`);
+    }
+
+    function updateSelectedCocktails(){
+      const holder = document.getElementById('selectedDrinks');
+      holder.innerHTML = selectedCocktails.map(name => `<span class="pill">${name}<button type="button" data-remove-cocktail="${name}" aria-label="Retirer ${name}">x</button></span>`).join('');
+    }
+
+    function renderEventPicker(){
+      const picker = document.getElementById('eventPicker');
+      const keys = Object.keys(recommendations);
+      picker.innerHTML = keys.map((key,index) => `<button class="choice-btn ${index === 0 ? 'active' : ''}" data-event-choice="${key}">${key}</button>`).join('');
+      picker.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-event-choice]');
+        if(!btn) return;
+        picker.querySelectorAll('.choice-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        setRecommendation(btn.dataset.eventChoice);
+      });
+      setRecommendation(keys[0]);
+    }
+
+    function setRecommendation(key){
+      const [title, text] = recommendations[key];
+      document.getElementById('eventRecommendation').innerHTML = `<h3>${title}</h3><p>${text}</p>`;
+    }
+
+    function renderPackOptions(){
+      const template = (context) => packOptions.map(([title, desc], index) => `
+        <label class="pack-option">
+          <input type="checkbox" name="pack" value="${title}" ${context === 'service' && index < 2 ? 'checked' : ''}>
+          <strong>${title}</strong>
+          <span>${desc}</span>
+        </label>`).join('');
+      document.getElementById('servicePackBuilder').innerHTML = template('service');
+      document.getElementById('bookingPackBuilder').innerHTML = template('booking');
+    }
+
+    function renderGalleryFilters(){
+      const wrap = document.getElementById('galleryFilters');
+      wrap.innerHTML = galleryCategories.map((cat,index) => `<button class="filter-btn ${index === 0 ? 'active' : ''}" data-gallery-filter="${cat}">${cat}</button>`).join('');
+      wrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-gallery-filter]');
+        if(!btn) return;
+        wrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderGallery(btn.dataset.galleryFilter);
+      });
+    }
+
+    function renderGallery(filter='Tous'){
+      const grid = document.getElementById('galleryGrid');
+      const data = filter === 'Tous' ? gallery : gallery.filter(item => item.cat === filter);
+      grid.innerHTML = data.map((item, index) => `
+        <article class="gallery-card" data-gallery-index="${gallery.indexOf(item)}" tabindex="0" role="button" aria-label="Ouvrir ${item.title}">
+          <img src="${item.image}" alt="${item.title}" loading="lazy">
+          <div class="gallery-overlay"><strong>${item.title}</strong><span>${item.text}</span></div>
+        </article>`).join('');
+    }
+
+    function openModal(index){
+      const item = gallery[index];
+      const modal = document.getElementById('imageModal');
+      document.getElementById('modalImage').src = item.image;
+      document.getElementById('modalTitle').textContent = item.title;
+      document.getElementById('modalText').textContent = item.text;
+      modal.classList.add('active');
+      modal.setAttribute('aria-hidden','false');
+    }
+
+    function closeModal(){
+      const modal = document.getElementById('imageModal');
+      modal.classList.remove('active');
+      modal.setAttribute('aria-hidden','true');
+    }
+
+    function submitBooking(e){
+      e.preventDefault();
+      const form = e.currentTarget;
+      if(!form.reportValidity()) return;
+      const data = new FormData(form);
+      const selectedPack = [...form.querySelectorAll('input[name="pack"]:checked')].map(input => input.value).join(', ') || 'À préciser';
+      const lines = [
+        'Bonjour Lio Ice Style, je souhaite obtenir un devis pour ma prestation.',
+        '',
+        `Nom complet : ${data.get('fullName')}`,
+        `Téléphone : ${data.get('clientPhone')}`,
+        `Type d’événement : ${data.get('eventType')}`,
+        `Date souhaitée : ${data.get('eventDate')}`,
+        `Lieu : ${data.get('eventPlace')}`,
+        `Nombre d’invités : ${data.get('guestCount')}`,
+        `Prestation souhaitée : ${data.get('serviceType')}`,
+        `Pack souhaité : ${selectedPack}`,
+        `Cocktails ou boissons : ${data.get('wantedDrinks')}`,
+        `Informations complémentaires : ${data.get('message') || 'Aucune'}`
+      ];
+      const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
+      window.open(url, '_blank');
+    }
+
+    document.addEventListener('click', (e) => {
+      const navTarget = e.target.closest('[data-page]');
+      const goTarget = e.target.closest('[data-go]');
+      const cocktailBtn = e.target.closest('[data-add-cocktail]');
+      const removeCocktail = e.target.closest('[data-remove-cocktail]');
+      const galleryItem = e.target.closest('[data-gallery-index]');
+
+      if(navTarget){ setPage(navTarget.dataset.page); }
+      if(goTarget){ e.preventDefault(); setPage(goTarget.dataset.go); }
+      if(cocktailBtn){ addCocktail(cocktailBtn.dataset.addCocktail); }
+      if(removeCocktail){
+        selectedCocktails = selectedCocktails.filter(name => name !== removeCocktail.dataset.removeCocktail);
+        updateSelectedCocktails();
+        document.getElementById('wantedDrinks').value = selectedCocktails.join(', ');
+      }
+      if(galleryItem){ openModal(Number(galleryItem.dataset.galleryIndex)); }
+    });
+
+    document.getElementById('menuToggle').addEventListener('click', () => document.body.classList.toggle('menu-open'));
+    document.getElementById('bookingForm').addEventListener('submit', submitBooking);
+    document.getElementById('modalClose').addEventListener('click', closeModal);
+    document.getElementById('imageModal').addEventListener('click', (e) => { if(e.target.id === 'imageModal') closeModal(); });
+    document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+    renderMarquees();
+    renderServices();
+    renderCatalogFilters();
+    renderCatalog();
+    renderEventPicker();
+    renderPackOptions();
+    renderGalleryFilters();
+    renderGallery();
+    updateSelectedCocktails();
+    initIcons();
+  </script>
+</body>
+</html>

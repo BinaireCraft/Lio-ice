@@ -599,6 +599,187 @@
     }
     .pill button{background:transparent;border:0;color:inherit;cursor:pointer;font-weight:900}
 
+
+
+    .booking-intro-card{
+      border:1px solid rgba(255,122,0,.24);
+      background:
+        radial-gradient(circle at 20% 20%, rgba(255,122,0,.18), transparent 22rem),
+        linear-gradient(145deg, rgba(255,255,255,.075), rgba(255,255,255,.032));
+      border-radius:var(--radius);
+      padding:28px;
+      box-shadow:var(--shadow);
+      margin-bottom:24px;
+    }
+    .booking-intro-card p{color:var(--muted);line-height:1.75;max-width:850px}
+    .booking-tabs{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin:22px 0 0;
+    }
+    .booking-mode-btn{
+      border:1px solid var(--line);
+      border-radius:24px;
+      padding:20px;
+      background:rgba(255,255,255,.045);
+      color:#fff;
+      cursor:pointer;
+      text-align:left;
+      transition:.25s ease;
+      display:flex;
+      gap:14px;
+      align-items:flex-start;
+    }
+    .booking-mode-btn .card-icon{margin-bottom:0;flex:0 0 auto}
+    .booking-mode-btn strong{display:block;font-size:1.05rem;margin-bottom:6px}
+    .booking-mode-btn span{display:block;color:var(--muted);line-height:1.55;font-size:.92rem}
+    .booking-mode-btn:hover,.booking-mode-btn.active{border-color:rgba(255,122,0,.48);background:rgba(255,122,0,.11);transform:translateY(-3px)}
+    .reservation-flow{
+      display:grid;
+      grid-template-columns:1.02fr .98fr;
+      gap:24px;
+      align-items:start;
+    }
+    .booking-panel{display:none}
+    .booking-panel.active{display:block;animation:pageIn .35s ease both}
+    .booking-panel-head{display:flex;align-items:end;justify-content:space-between;gap:16px;margin-bottom:18px}
+    .booking-panel-head h3{font-size:1.45rem;line-height:1.15;margin-bottom:6px}
+    .booking-panel-head p{color:var(--muted);line-height:1.62;font-size:.94rem}
+    .mini-catalog-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      max-height:680px;
+      overflow:auto;
+      padding-right:4px;
+    }
+    .mini-cocktail-card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:22px;
+      overflow:hidden;
+      transition:.25s ease;
+    }
+    .mini-cocktail-card:hover{border-color:rgba(255,122,0,.38);transform:translateY(-3px)}
+    .mini-cocktail-card img{height:138px;width:100%;object-fit:cover}
+    .mini-cocktail-body{padding:14px}
+    .mini-cocktail-body h4{font-size:.98rem;margin-bottom:7px}
+    .mini-cocktail-body p{color:var(--muted);font-size:.84rem;line-height:1.48;margin-bottom:12px}
+    .theme-grid{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+    }
+    .theme-card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:22px;
+      padding:18px;
+      text-align:left;
+      color:#fff;
+      cursor:pointer;
+      transition:.25s ease;
+    }
+    .theme-card:hover,.theme-card.active{border-color:rgba(255,122,0,.5);background:rgba(255,122,0,.12);transform:translateY(-3px)}
+    .theme-card strong{display:block;margin-bottom:8px;font-size:1.02rem}
+    .theme-card span{display:block;color:var(--muted);line-height:1.55;font-size:.9rem}
+    .selection-summary{
+      border:1px solid rgba(255,122,0,.28);
+      background:linear-gradient(145deg, rgba(255,122,0,.14), rgba(255,255,255,.04));
+      border-radius:24px;
+      padding:20px;
+      margin-top:18px;
+    }
+    .selection-summary h3{font-size:1.15rem;margin-bottom:10px}
+    .summary-line{display:grid;gap:6px;margin-top:12px;color:var(--muted);line-height:1.55;font-size:.92rem}
+    .summary-line strong{color:#fff}
+    .booking-form-card{position:sticky;top:106px}
+    .quick-contact-list{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px;margin-top:22px}
+    .quick-contact-item{
+      border:1px solid var(--line);
+      border-radius:20px;
+      background:rgba(255,255,255,.045);
+      padding:16px;
+    }
+    .quick-contact-item strong{display:block;margin-bottom:6px}
+    .quick-contact-item span{display:block;color:var(--muted);font-size:.88rem;line-height:1.48}
+    .footer-cta{
+      padding:78px 0;
+      background:
+        radial-gradient(circle at 80% 20%, rgba(255,122,0,.18), transparent 28rem),
+        linear-gradient(180deg, rgba(255,255,255,.02), rgba(0,0,0,.38));
+      border-top:1px solid var(--line);
+    }
+    .footer-cta-card{
+      position:relative;
+      overflow:hidden;
+      border-radius:34px;
+      border:1px solid rgba(255,122,0,.28);
+      background:
+        linear-gradient(90deg, rgba(0,0,0,.84), rgba(0,0,0,.56)),
+        url('https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?auto=format&fit=crop&w=1600&q=80') center/cover;
+      padding:46px;
+      box-shadow:var(--shadow);
+      display:grid;
+      grid-template-columns:1.05fr .95fr;
+      gap:28px;
+      align-items:center;
+    }
+    .footer-cta-card h2{margin-bottom:12px}
+    .footer-cta-card p{color:var(--muted);line-height:1.75;max-width:720px}
+    .footer-cta-actions{display:flex;justify-content:flex-end;gap:12px;flex-wrap:wrap}
+    .site-footer{
+      border-top:1px solid var(--line);
+      background:linear-gradient(180deg, rgba(16,16,16,.94), rgba(0,0,0,.98));
+      padding:0;
+      color:var(--muted);
+    }
+    .footer-main{
+      display:grid;
+      grid-template-columns:1.2fr 2fr;
+      gap:36px;
+      padding:46px 0 30px;
+    }
+    .footer-brand-card{
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:26px;
+      padding:22px;
+    }
+    .footer-brand-row{display:flex;align-items:center;gap:13px;margin-bottom:14px}
+    .footer-brand-row img{width:50px;height:50px;border-radius:16px;object-fit:cover;border:1px solid rgba(255,122,0,.34)}
+    .footer-brand-row strong{display:block;color:#fff;font-size:1.05rem}
+    .footer-brand-row span{display:block;color:var(--gold);font-size:.75rem;text-transform:uppercase;letter-spacing:.08em;margin-top:4px}
+    .footer-brand-card p{line-height:1.7;font-size:.94rem}
+    .footer-columns{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:22px;
+    }
+    .footer-col h3{color:#fff;font-size:.98rem;margin-bottom:14px}
+    .footer-col ul{list-style:none;display:grid;gap:10px}
+    .footer-col button,.footer-col a{
+      background:transparent;
+      border:0;
+      color:var(--muted);
+      cursor:pointer;
+      padding:0;
+      text-align:left;
+      line-height:1.45;
+    }
+    .footer-col button:hover,.footer-col a:hover{color:#fff}
+    .footer-bottom{
+      border-top:1px solid var(--line);
+      padding:18px 0;
+      display:flex;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      font-size:.9rem;
+    }
+    .footer-bottom strong{color:#fff}
+
     .modal{
       position:fixed;
       inset:0;
@@ -685,11 +866,11 @@
       .nav-link{width:100%;text-align:left;border-radius:17px}
       .menu-toggle{display:grid;place-items:center}
       .nav-actions .btn{display:none}
-      .about-grid,.split-layout,.contact-layout{grid-template-columns:1fr}
-      .sticky-box,.contact-aside{position:relative;top:0}
+      .about-grid,.split-layout,.contact-layout,.reservation-flow,.footer-cta-card,.footer-main{grid-template-columns:1fr}
+      .sticky-box,.contact-aside,.booking-form-card{position:relative;top:0}
       .trust-grid,.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .catalog-grid,.gallery-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .event-picker,.pack-builder{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .catalog-grid,.gallery-grid,.quick-contact-list{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .event-picker,.pack-builder,.booking-tabs,.theme-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     @media (max-width: 720px){
@@ -706,13 +887,16 @@
       section.block{padding:62px 0}
       .section-head{display:grid;gap:16px}
       .about-media{min-height:350px}
-      .signature-line,.trust-grid,.service-grid,.catalog-grid,.gallery-grid,.event-picker,.pack-builder,.form-grid{grid-template-columns:1fr}
+      .signature-line,.trust-grid,.service-grid,.catalog-grid,.gallery-grid,.event-picker,.pack-builder,.form-grid,.booking-tabs,.theme-grid,.mini-catalog-grid,.quick-contact-list,.footer-columns{grid-template-columns:1fr}
       .field.full{grid-column:auto}
       .drink-tile{width:210px;height:144px;border-radius:20px}
       .marquee-track{gap:12px}
       .gallery-card{height:290px}
       .modal-caption{display:grid}
       .footer-grid{display:grid}
+      .footer-cta-card{padding:28px}
+      .footer-cta-actions{justify-content:flex-start}
+      .footer-main{gap:18px}
     }
   </style>
 </head>
@@ -750,7 +934,7 @@
             <p>Lio Ice Style vous accompagne depuis 2017 : un bar élégant, des créations uniques et une équipe passionnée pour transformer chaque réception en moment inoubliable.</p>
             <div class="hero-actions">
               <button class="btn btn-primary" data-go="services">Découvrir nos créations</button>
-              <button class="btn btn-secondary" data-go="reservation">Demander un devis</button>
+              <button class="btn btn-secondary" data-go="reservation">Réserver cette prestation</button>
             </div>
             <div class="hero-metrics" aria-label="Informations clés">
               <div class="metric"><strong>2017</strong><span>Année de création – une solide expérience terrain.</span></div>
@@ -855,7 +1039,7 @@
               <h2>Des recettes uniques, fraîches et photogéniques.</h2>
               <p>Filtrez par style et ajoutez vos favoris à votre demande de devis.</p>
             </div>
-            <button class="btn btn-secondary" data-go="reservation">Composer ma commande</button>
+            <button class="btn btn-secondary" data-go="reservation">Réserver avec mes cocktails</button>
           </div>
           <div class="filter-bar" id="catalogFilters"></div>
           <div class="catalog-grid" id="catalogGrid"></div>
@@ -887,7 +1071,7 @@
           </div>
           <div class="pack-builder" id="servicePackBuilder"></div>
           <div style="margin-top:24px">
-            <button class="btn btn-primary" data-go="reservation">Demander un devis</button>
+            <button class="btn btn-primary" data-go="reservation">Réserver cette prestation</button>
           </div>
         </div>
       </section>
@@ -923,69 +1107,156 @@
       <div class="hero compact" style="--hero-img:url('https://images.unsplash.com/photo-1575444758702-4a6b9222336e?auto=format&fit=crop&w=1800&q=80')">
         <div class="container">
           <div class="hero-content page-hero-title">
-            <span class="eyebrow">Contact & devis</span>
-            <h1>Parlons de votre projet.</h1>
-            <p>Remplissez le formulaire, nous vous répondrons sous 24h avec une proposition détaillée.</p>
+            <span class="eyebrow">Réservation</span>
+            <h1>Réservez selon votre cocktail ou votre ambiance.</h1>
+            <p>Choisissez vos boissons préférées ou sélectionnez un thème d’événement. Lio Ice Style transforme ensuite votre choix en prestation claire, élégante et adaptée à vos invités.</p>
           </div>
         </div>
       </div>
 
       <section class="block">
-        <div class="container contact-layout">
-          <aside class="glass-card contact-aside">
-            <p class="section-kicker">Informations pratiques</p>
-            <h2>Une demande claire = un devis précis.</h2>
-            <p class="text-muted">Plus vous nous en direz sur votre événement, plus nous pourrons vous proposer une prestation adaptée.</p>
-            <div class="info-list">
-              <div class="info-line"><i data-lucide="clock" class="icon"></i><div><strong>Réservez tôt</strong><span>Idéalement dès que la date est fixée, surtout en haute saison (mai-octobre).</span></div></div>
-              <div class="info-line"><i data-lucide="map-pin" class="icon"></i><div><strong>Partout en France</strong><span>Nous nous déplaçons avec notre matériel. Le transport est inclus dans nos devis.</span></div></div>
-              <div class="info-line"><i data-lucide="message-circle" class="icon"></i><div><strong>Devis sous 24h</strong><span>Via WhatsApp ou email, nous répondons rapidement à toute demande.</span></div></div>
+        <div class="container">
+          <div class="booking-intro-card">
+            <p class="section-kicker">Parcours simplifié</p>
+            <h2>Une réservation plus rapide, plus claire et plus visuelle.</h2>
+            <p>Vous n’avez pas besoin de tout expliquer dès le départ. Commencez par choisir ce qui vous inspire : des cocktails précis ou un thème d’événement. Le formulaire ne garde ensuite que les informations essentielles pour préparer votre demande sur WhatsApp.</p>
+            <div class="booking-tabs" id="bookingModeTabs">
+              <button class="booking-mode-btn active" type="button" data-booking-mode="cocktails">
+                <span class="card-icon"><i data-lucide="glass-water" class="icon"></i></span>
+                <span><strong>Réserver par cocktails</strong><span>Choisissez les cocktails que vous voulez proposer à vos invités.</span></span>
+              </button>
+              <button class="booking-mode-btn" type="button" data-booking-mode="theme">
+                <span class="card-icon"><i data-lucide="sparkles" class="icon"></i></span>
+                <span><strong>Réserver par thème</strong><span>Sélectionnez une ambiance : mariage, anniversaire, corporate ou atelier.</span></span>
+              </button>
             </div>
-          </aside>
+          </div>
 
-          <form id="bookingForm">
-            <div class="form-grid">
-              <div class="field"><label for="fullName">Nom complet</label><input id="fullName" name="fullName" type="text" placeholder="Votre nom" required /></div>
-              <div class="field"><label for="clientPhone">Téléphone (WhatsApp)</label><input id="clientPhone" name="clientPhone" type="tel" placeholder="Exemple : +243 979 589 05" required /></div>
-              <div class="field"><label for="eventType">Type d’événement</label><select id="eventType" name="eventType" required><option value="">Sélectionner</option><option>Mariage</option><option>Anniversaire</option><option>Événement corporate</option><option>Cérémonie privée</option><option>Exposition ou stand</option><option>Atelier cocktail</option><option>Autre événement privé</option></select></div>
-              <div class="field"><label for="eventDate">Date souhaitée</label><input id="eventDate" name="eventDate" type="date" required /></div>
-              <div class="field"><label for="eventPlace">Lieu de l’événement</label><input id="eventPlace" name="eventPlace" type="text" placeholder="Ville, adresse complète" required /></div>
-              <div class="field"><label for="guestCount">Nombre d’invités estimé</label><input id="guestCount" name="guestCount" type="number" min="1" placeholder="Exemple : 80" required /></div>
-              <div class="field full"><label for="serviceType">Type de prestation souhaitée</label><select id="serviceType" name="serviceType" required><option value="">Sélectionner</option><option>Bar mobile complet</option><option>Cocktails personnalisés</option><option>Boissons fraîches</option><option>Prestation mariage</option><option>Prestation corporate</option><option>Atelier cocktail</option><option>Service sur stand</option><option>Conseil personnalisé</option></select></div>
-              <div class="field full">
-                <label>Pack souhaité</label>
-                <div class="pack-builder" id="bookingPackBuilder"></div>
+          <div class="reservation-flow">
+            <div class="glass-card">
+              <div class="booking-panel active" id="panelCocktails">
+                <div class="booking-panel-head">
+                  <div>
+                    <p class="section-kicker">Sélection cocktails</p>
+                    <h3>Choisissez les boissons de votre événement.</h3>
+                    <p>Ajoutez les cocktails qui correspondent à votre ambiance. Notre équipe vous conseillera ensuite sur les quantités et la présentation.</p>
+                  </div>
+                </div>
+                <div class="filter-bar" id="bookingCocktailFilters"></div>
+                <div class="mini-catalog-grid" id="bookingCocktailGrid"></div>
               </div>
-              <div class="field full">
-                <label for="wantedDrinks">Cocktails ou boissons souhaités</label>
-                <textarea id="wantedDrinks" name="wantedDrinks" placeholder="Exemple : cocktails fruités, sans alcool, un cocktail signature..." required></textarea>
-                <div class="selected-drinks" id="selectedDrinks"></div>
+
+              <div class="booking-panel" id="panelTheme">
+                <div class="booking-panel-head">
+                  <div>
+                    <p class="section-kicker">Thème événementiel</p>
+                    <h3>Choisissez l’ambiance qui ressemble à votre événement.</h3>
+                    <p>Le thème sélectionné permet à Lio Ice Style de proposer une prestation adaptée à votre contexte, votre lieu et votre public.</p>
+                  </div>
+                </div>
+                <div class="theme-grid" id="bookingThemeGrid"></div>
               </div>
-              <div class="field full"><label for="message">Informations complémentaires</label><textarea id="message" name="message" placeholder="Décrivez votre projet (ambiance, horaires, thème, contraintes particulières)."></textarea></div>
+
+              <div class="selection-summary">
+                <h3>Votre sélection</h3>
+                <div class="summary-line"><strong>Mode de réservation</strong><span id="summaryMode">Réservation par cocktails</span></div>
+                <div class="summary-line"><strong>Thème retenu</strong><span id="summaryTheme">À préciser</span></div>
+                <div class="summary-line"><strong>Cocktails sélectionnés</strong><div class="selected-drinks" id="selectedDrinks"></div></div>
+              </div>
             </div>
-            <p class="form-note">En cliquant sur "Envoyer", vous serez redirigé vers WhatsApp pour finaliser votre demande.</p>
-            <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
-              <button class="btn btn-primary" type="submit">Envoyer la demande</button>
-              <button class="btn btn-secondary" type="reset">Effacer le formulaire</button>
-            </div>
-          </form>
+
+            <form id="bookingForm" class="booking-form-card">
+              <input type="hidden" id="selectedModeField" name="selectedMode" value="Réservation par cocktails" />
+              <input type="hidden" id="selectedThemeField" name="selectedTheme" value="" />
+              <input type="hidden" id="wantedDrinks" name="wantedDrinks" value="" />
+              <div class="form-grid">
+                <div class="field"><label for="fullName">Nom complet</label><input id="fullName" name="fullName" type="text" placeholder="Votre nom" required /></div>
+                <div class="field"><label for="clientPhone">Numéro WhatsApp</label><input id="clientPhone" name="clientPhone" type="tel" placeholder="Exemple : +243 000 000 000" required /></div>
+                <div class="field"><label for="eventDate">Date de l’événement</label><input id="eventDate" name="eventDate" type="date" required /></div>
+                <div class="field"><label for="guestCount">Nombre approximatif d’invités</label><input id="guestCount" name="guestCount" type="number" min="1" placeholder="Exemple : 80" required /></div>
+                <div class="field full"><label for="eventPlace">Lieu de l’événement</label><input id="eventPlace" name="eventPlace" type="text" placeholder="Ville, commune ou adresse" required /></div>
+                <div class="field full">
+                  <label>Options souhaitées</label>
+                  <div class="pack-builder" id="bookingPackBuilder"></div>
+                </div>
+                <div class="field full"><label for="message">Message complémentaire</label><textarea id="message" name="message" placeholder="Ajoutez le thème, les horaires, le style de décoration ou toute précision utile."></textarea></div>
+              </div>
+              <p class="form-note">Après validation, WhatsApp s’ouvre avec un message automatiquement structuré à partir de votre sélection.</p>
+              <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
+                <button class="btn btn-primary" type="submit">Envoyer ma demande sur WhatsApp</button>
+                <button class="btn btn-secondary" type="reset">Recommencer</button>
+              </div>
+            </form>
+          </div>
+
+          <div class="quick-contact-list">
+            <div class="quick-contact-item"><strong>Réponse rapide</strong><span>La demande arrive directement sur WhatsApp avec les informations essentielles.</span></div>
+            <div class="quick-contact-item"><strong>Choix guidé</strong><span>Le client peut réserver par cocktail ou par thème, sans remplir un formulaire trop lourd.</span></div>
+            <div class="quick-contact-item"><strong>Prestation adaptée</strong><span>Lio Ice Style ajuste les quantités, le service et la présentation selon l’événement.</span></div>
+          </div>
         </div>
       </section>
+    </section>
+
+    <section class="footer-cta">
+      <div class="container">
+        <div class="footer-cta-card">
+          <div>
+            <p class="section-kicker">Votre événement mérite une vraie signature</p>
+            <h2>Prêt à sublimer votre réception avec Lio Ice Style ?</h2>
+            <p>Mariage, anniversaire, cérémonie privée, exposition ou événement d’entreprise : choisissez vos cocktails ou votre thème, et notre équipe prépare une prestation élégante, mobile et adaptée à votre ambiance.</p>
+          </div>
+          <div class="footer-cta-actions">
+            <button class="btn btn-primary" data-booking-open="cocktails">Choisir mes cocktails</button>
+            <button class="btn btn-secondary" data-booking-open="theme">Réserver par thème</button>
+          </div>
+        </div>
+      </div>
     </section>
   </main>
 
   <footer class="site-footer">
-    <div class="container footer-grid">
-      <div>
-        <strong style="color:#fff">Lio Ice Style</strong>
-        <div>Bar mobile & cocktails d’auteur – depuis 2017.</div>
+    <div class="container footer-main">
+      <div class="footer-brand-card">
+        <div class="footer-brand-row">
+          <img src="data:image/jpeg;base64,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" alt="Lio Ice Style">
+          <div><strong>Lio Ice Style</strong><span>Depuis 2017</span></div>
+        </div>
+        <p>Bar mobile, cocktails et boissons fraîches pour mariages, anniversaires, cérémonies, stands, expositions et événements professionnels.</p>
       </div>
-      <div class="footer-links">
-        <button data-go="home">Accueil</button>
-        <button data-go="services">Services</button>
-        <button data-go="realisations">Réalisations</button>
-        <button data-go="reservation">Contact</button>
+      <div class="footer-columns">
+        <div class="footer-col">
+          <h3>Prestations</h3>
+          <ul>
+            <li><button data-go="services">Bar mobile</button></li>
+            <li><button data-go="services">Cocktails personnalisés</button></li>
+            <li><button data-go="services">Prestations mariage</button></li>
+            <li><button data-go="services">Événements corporate</button></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Réservation</h3>
+          <ul>
+            <li><button data-booking-open="cocktails">Réserver par cocktail</button></li>
+            <li><button data-booking-open="theme">Réserver par thème</button></li>
+            <li><button data-go="realisations">Voir les réalisations</button></li>
+            <li><button data-go="reservation">Contacter l’équipe</button></li>
+          </ul>
+        </div>
+        <div class="footer-col">
+          <h3>Contact</h3>
+          <ul>
+            <li><button data-go="reservation">WhatsApp</button></li>
+            <li><span>République Démocratique du Congo</span></li>
+            <li><span>Mariages, cérémonies et événements privés</span></li>
+            <li><span>Prestations corporate et stands</span></li>
+          </ul>
+        </div>
       </div>
+    </div>
+    <div class="container footer-bottom">
+      <span><strong>Lio Ice Style</strong> — Bar mobile & cocktails événementiels.</span>
+      <span>Création du site : BinaireCraft</span>
     </div>
   </footer>
 
@@ -1090,6 +1361,8 @@
     ];
 
     let selectedCocktails = [];
+    let bookingMode = 'cocktails';
+    let selectedTheme = '';
 
     function initIcons(){
       if(window.lucide){ lucide.createIcons(); }
@@ -1154,7 +1427,7 @@
           <div class="catalog-content">
             <div class="catalog-top"><h3>${item.name}</h3><span class="tag">${item.label}</span></div>
             <p>${item.desc}</p>
-            <button class="btn btn-secondary btn-small" data-add-cocktail="${item.name}">Ajouter à ma sélection</button>
+            <button class="btn btn-secondary btn-small" data-add-cocktail="${item.name}">Ajouter à ma réservation</button>
           </div>
         </article>`).join('');
       initIcons();
@@ -1162,16 +1435,93 @@
 
     function addCocktail(name){
       if(!selectedCocktails.includes(name)){ selectedCocktails.push(name); }
+      bookingMode = 'cocktails';
       updateSelectedCocktails();
-      const textarea = document.getElementById('wantedDrinks');
-      const current = textarea.value.trim();
-      textarea.value = selectedCocktails.join(', ') + (current && !selectedCocktails.some(n => current.includes(n)) ? `, ${current}` : '');
-      showToast(`${name} a été ajouté à votre sélection.`);
+      updateBookingSummary();
+      showToast(`${name} a été ajouté à votre réservation.`);
     }
 
     function updateSelectedCocktails(){
       const holder = document.getElementById('selectedDrinks');
+      if(!holder) return;
+      if(selectedCocktails.length === 0){
+        holder.innerHTML = '<span class="text-muted">Aucun cocktail sélectionné pour le moment.</span>';
+        return;
+      }
       holder.innerHTML = selectedCocktails.map(name => `<span class="pill">${name}<button type="button" data-remove-cocktail="${name}" aria-label="Retirer ${name}">x</button></span>`).join('');
+    }
+
+    function renderBookingCocktailFilters(){
+      const wrap = document.getElementById('bookingCocktailFilters');
+      if(!wrap) return;
+      const cats = catalogCategories.slice(0, 6);
+      wrap.innerHTML = cats.map((cat, index) => `<button class="filter-btn ${index === 0 ? 'active' : ''}" data-booking-cocktail-filter="${cat}">${cat}</button>`).join('');
+      wrap.addEventListener('click', (e) => {
+        const btn = e.target.closest('[data-booking-cocktail-filter]');
+        if(!btn) return;
+        wrap.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+        btn.classList.add('active');
+        renderBookingCocktails(btn.dataset.bookingCocktailFilter);
+      });
+    }
+
+    function renderBookingCocktails(filter='Tous'){
+      const grid = document.getElementById('bookingCocktailGrid');
+      if(!grid) return;
+      const data = filter === 'Tous' ? cocktails : cocktails.filter(item => item.type === filter);
+      grid.innerHTML = data.map(item => `
+        <article class="mini-cocktail-card">
+          <img src="${item.image}" alt="${item.name}" loading="lazy">
+          <div class="mini-cocktail-body">
+            <h4>${item.name}</h4>
+            <p>${item.desc}</p>
+            <button class="btn btn-secondary btn-small" type="button" data-add-cocktail="${item.name}">${selectedCocktails.includes(item.name) ? 'Déjà sélectionné' : 'Ajouter'}</button>
+          </div>
+        </article>`).join('');
+    }
+
+    function renderBookingThemes(){
+      const grid = document.getElementById('bookingThemeGrid');
+      if(!grid) return;
+      grid.innerHTML = Object.keys(recommendations).map(key => {
+        const [title, text] = recommendations[key];
+        return `<button class="theme-card ${selectedTheme === key ? 'active' : ''}" type="button" data-select-theme="${key}"><strong>${title}</strong><span>${text}</span></button>`;
+      }).join('');
+    }
+
+    function setBookingMode(mode){
+      bookingMode = mode === 'theme' ? 'theme' : 'cocktails';
+      document.querySelectorAll('[data-booking-mode]').forEach(btn => btn.classList.toggle('active', btn.dataset.bookingMode === bookingMode));
+      const cocktailPanel = document.getElementById('panelCocktails');
+      const themePanel = document.getElementById('panelTheme');
+      if(cocktailPanel) cocktailPanel.classList.toggle('active', bookingMode === 'cocktails');
+      if(themePanel) themePanel.classList.toggle('active', bookingMode === 'theme');
+      if(bookingMode === 'theme' && !selectedTheme){ selectTheme(Object.keys(recommendations)[0], false); }
+      updateBookingSummary();
+      initIcons();
+    }
+
+    function selectTheme(theme, notify=true){
+      selectedTheme = theme;
+      setBookingMode('theme');
+      renderBookingThemes();
+      updateBookingSummary();
+      if(notify) showToast(`${theme} a été sélectionné pour votre réservation.`);
+    }
+
+    function updateBookingSummary(){
+      const modeLabel = bookingMode === 'theme' ? 'Réservation par thème' : 'Réservation par cocktails';
+      const modeEl = document.getElementById('summaryMode');
+      const themeEl = document.getElementById('summaryTheme');
+      const modeField = document.getElementById('selectedModeField');
+      const themeField = document.getElementById('selectedThemeField');
+      const drinksField = document.getElementById('wantedDrinks');
+      if(modeEl) modeEl.textContent = modeLabel;
+      if(themeEl) themeEl.textContent = selectedTheme || 'À préciser';
+      if(modeField) modeField.value = modeLabel;
+      if(themeField) themeField.value = selectedTheme || '';
+      if(drinksField) drinksField.value = selectedCocktails.join(', ');
+      renderBookingCocktails(document.querySelector('[data-booking-cocktail-filter].active')?.dataset.bookingCocktailFilter || 'Tous');
     }
 
     function renderEventPicker(){
@@ -1190,7 +1540,7 @@
 
     function setRecommendation(key){
       const [title, text] = recommendations[key];
-      document.getElementById('eventRecommendation').innerHTML = `<h3>${title}</h3><p>${text}</p>`;
+      document.getElementById('eventRecommendation').innerHTML = `<h3>${title}</h3><p>${text}</p><div style="margin-top:16px"><button class="btn btn-primary btn-small" data-book-theme="${key}">Réserver ce thème</button></div>`;
     }
 
     function renderPackOptions(){
@@ -1200,8 +1550,10 @@
           <strong>${title}</strong>
           <span>${desc}</span>
         </label>`).join('');
-      document.getElementById('servicePackBuilder').innerHTML = template('service');
-      document.getElementById('bookingPackBuilder').innerHTML = template('booking');
+      const serviceHolder = document.getElementById('servicePackBuilder');
+      const bookingHolder = document.getElementById('bookingPackBuilder');
+      if(serviceHolder) serviceHolder.innerHTML = template('service');
+      if(bookingHolder) bookingHolder.innerHTML = template('booking');
     }
 
     function renderGalleryFilters(){
@@ -1245,22 +1597,36 @@
     function submitBooking(e){
       e.preventDefault();
       const form = e.currentTarget;
+      updateBookingSummary();
+      if(bookingMode === 'cocktails' && selectedCocktails.length === 0){
+        showToast('Choisissez au moins un cocktail ou passez en réservation par thème.');
+        setBookingMode('cocktails');
+        return;
+      }
+      if(bookingMode === 'theme' && !selectedTheme){
+        showToast('Choisissez un thème d’événement pour continuer.');
+        setBookingMode('theme');
+        return;
+      }
       if(!form.reportValidity()) return;
       const data = new FormData(form);
       const selectedPack = [...form.querySelectorAll('input[name="pack"]:checked')].map(input => input.value).join(', ') || 'À préciser';
+      const themeLabel = selectedTheme || 'À préciser';
+      const cocktailLabel = selectedCocktails.length ? selectedCocktails.join(', ') : 'À préciser avec l’équipe';
       const lines = [
-        'Bonjour Lio Ice Style, je souhaite obtenir un devis pour ma prestation.',
+        'Bonjour Lio Ice Style, je souhaite réserver une prestation.',
+        '',
+        `Mode de réservation : ${bookingMode === 'theme' ? 'Par thème' : 'Par cocktails'}`,
+        `Thème d’événement : ${themeLabel}`,
+        `Cocktails sélectionnés : ${cocktailLabel}`,
+        `Options souhaitées : ${selectedPack}`,
         '',
         `Nom complet : ${data.get('fullName')}`,
-        `Téléphone : ${data.get('clientPhone')}`,
-        `Type d’événement : ${data.get('eventType')}`,
-        `Date souhaitée : ${data.get('eventDate')}`,
-        `Lieu : ${data.get('eventPlace')}`,
-        `Nombre d’invités : ${data.get('guestCount')}`,
-        `Prestation souhaitée : ${data.get('serviceType')}`,
-        `Pack souhaité : ${selectedPack}`,
-        `Cocktails ou boissons : ${data.get('wantedDrinks')}`,
-        `Informations complémentaires : ${data.get('message') || 'Aucune'}`
+        `Numéro WhatsApp : ${data.get('clientPhone')}`,
+        `Date de l’événement : ${data.get('eventDate')}`,
+        `Lieu de l’événement : ${data.get('eventPlace')}`,
+        `Nombre approximatif d’invités : ${data.get('guestCount')}`,
+        `Message complémentaire : ${data.get('message') || 'Aucun'}`
       ];
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
       window.open(url, '_blank');
@@ -1269,23 +1635,32 @@
     document.addEventListener('click', (e) => {
       const navTarget = e.target.closest('[data-page]');
       const goTarget = e.target.closest('[data-go]');
+      const openBooking = e.target.closest('[data-booking-open]');
+      const bookingModeBtn = e.target.closest('[data-booking-mode]');
+      const themeBtn = e.target.closest('[data-select-theme]');
+      const bookThemeBtn = e.target.closest('[data-book-theme]');
       const cocktailBtn = e.target.closest('[data-add-cocktail]');
       const removeCocktail = e.target.closest('[data-remove-cocktail]');
       const galleryItem = e.target.closest('[data-gallery-index]');
 
+      if(openBooking){ e.preventDefault(); setBookingMode(openBooking.dataset.bookingOpen); setPage('reservation'); return; }
+      if(bookingModeBtn){ setBookingMode(bookingModeBtn.dataset.bookingMode); return; }
+      if(themeBtn){ selectTheme(themeBtn.dataset.selectTheme); return; }
+      if(bookThemeBtn){ e.preventDefault(); selectTheme(bookThemeBtn.dataset.bookTheme); setPage('reservation'); return; }
       if(navTarget){ setPage(navTarget.dataset.page); }
       if(goTarget){ e.preventDefault(); setPage(goTarget.dataset.go); }
       if(cocktailBtn){ addCocktail(cocktailBtn.dataset.addCocktail); }
       if(removeCocktail){
         selectedCocktails = selectedCocktails.filter(name => name !== removeCocktail.dataset.removeCocktail);
         updateSelectedCocktails();
-        document.getElementById('wantedDrinks').value = selectedCocktails.join(', ');
+        updateBookingSummary();
       }
       if(galleryItem){ openModal(Number(galleryItem.dataset.galleryIndex)); }
     });
 
     document.getElementById('menuToggle').addEventListener('click', () => document.body.classList.toggle('menu-open'));
     document.getElementById('bookingForm').addEventListener('submit', submitBooking);
+    document.getElementById('bookingForm').addEventListener('reset', () => { setTimeout(() => { selectedCocktails = []; selectedTheme = ''; setBookingMode('cocktails'); updateSelectedCocktails(); updateBookingSummary(); }, 0); });
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('imageModal').addEventListener('click', (e) => { if(e.target.id === 'imageModal') closeModal(); });
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
@@ -1298,7 +1673,11 @@
     renderPackOptions();
     renderGalleryFilters();
     renderGallery();
+    renderBookingCocktailFilters();
+    renderBookingCocktails();
+    renderBookingThemes();
     updateSelectedCocktails();
+    updateBookingSummary();
     initIcons();
   </script>
 </body>

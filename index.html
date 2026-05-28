@@ -409,6 +409,55 @@
     .trust-card h3,.service-card h3,.choice-card h3{font-size:1.05rem;margin-bottom:10px;line-height:1.25}
     .trust-card p,.service-card p,.choice-card p{color:var(--muted);line-height:1.65;font-size:.94rem}
 
+    .packages-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:18px;
+    }
+    .package-card{
+      border:1px solid var(--line);
+      background:linear-gradient(145deg, rgba(255,255,255,.07), rgba(255,255,255,.035));
+      border-radius:26px;
+      padding:24px;
+      position:relative;
+      overflow:hidden;
+      transition:.25s ease;
+      min-height:100%;
+    }
+    .package-card:hover{transform:translateY(-5px);border-color:rgba(255,122,0,.38);box-shadow:0 18px 50px rgba(0,0,0,.28)}
+    .package-card.featured{border-color:rgba(255,122,0,.5);background:linear-gradient(145deg, rgba(255,122,0,.16), rgba(255,255,255,.045))}
+    .package-label{display:inline-flex;padding:8px 11px;border-radius:999px;background:rgba(255,122,0,.13);color:#ffd0a0;border:1px solid rgba(255,122,0,.24);font-size:.75rem;font-weight:850;text-transform:uppercase;letter-spacing:.05em;margin-bottom:16px}
+    .package-card h3{font-size:1.28rem;margin-bottom:10px}
+    .package-price{display:flex;align-items:end;gap:8px;margin:18px 0;color:#fff}
+    .package-price strong{font-size:2.15rem;line-height:1;color:var(--gold)}
+    .package-price span{color:var(--muted);font-weight:700;margin-bottom:3px}
+    .package-card ul{list-style:none;display:grid;gap:10px;margin-top:16px}
+    .package-card li{color:var(--muted);line-height:1.55;font-size:.94rem;display:flex;gap:9px}
+    .package-card li::before{content:"";width:7px;height:7px;border-radius:50%;background:var(--orange);flex:0 0 auto;margin-top:9px}
+    .packages-note{margin-top:18px;color:var(--muted);line-height:1.65;font-size:.94rem}
+
+    .booking-estimate{
+      border:1px solid rgba(255,122,0,.28);
+      background:linear-gradient(145deg, rgba(255,122,0,.14), rgba(255,255,255,.04));
+      border-radius:20px;
+      padding:16px;
+    }
+    .booking-estimate strong{display:block;margin-bottom:6px;color:#fff}
+    .booking-estimate span{display:block;color:var(--muted);line-height:1.58;font-size:.92rem}
+    .consent-box{
+      display:flex;
+      gap:12px;
+      align-items:flex-start;
+      border:1px solid rgba(255,122,0,.30);
+      background:rgba(255,122,0,.08);
+      border-radius:20px;
+      padding:16px;
+      margin-top:2px;
+    }
+    .consent-box input{width:auto;min-width:18px;margin-top:4px;accent-color:var(--orange)}
+    .consent-box label{line-height:1.58;color:#f6eee5;font-weight:650}
+    .consent-box small{display:block;color:var(--muted);margin-top:6px;line-height:1.5}
+
     .page-hero-title{max-width:820px}
     .split-layout{
       display:grid;
@@ -498,10 +547,75 @@
       cursor:pointer;
       transition:.25s ease;
     }
-    .pack-option input{position:absolute;opacity:0;pointer-events:none}
+    .pack-option{padding-left:52px}
+    .pack-option input{
+      position:absolute;
+      left:18px;
+      top:20px;
+      width:18px;
+      height:18px;
+      opacity:1;
+      pointer-events:auto;
+      accent-color:var(--orange);
+      cursor:pointer;
+    }
     .pack-option strong{display:block;margin-bottom:7px}
     .pack-option span{display:block;color:var(--muted);font-size:.9rem;line-height:1.5}
     .pack-option:has(input:checked){border-color:rgba(255,122,0,.55);background:rgba(255,122,0,.12);box-shadow:0 0 0 5px rgba(255,122,0,.07)}
+    .package-choice-grid{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:12px;
+    }
+    .package-choice-card{
+      border:1px solid var(--line);
+      border-radius:22px;
+      background:rgba(255,255,255,.045);
+      color:#fff;
+      padding:18px;
+      text-align:left;
+      cursor:pointer;
+      transition:.25s ease;
+      position:relative;
+      overflow:hidden;
+    }
+    .package-choice-card::before{
+      content:"";
+      position:absolute;
+      width:120px;
+      height:120px;
+      border-radius:50%;
+      right:-70px;
+      top:-70px;
+      background:rgba(255,122,0,.16);
+      filter:blur(10px);
+      opacity:0;
+      transition:.25s ease;
+    }
+    .package-choice-card strong{display:block;font-size:1rem;margin-bottom:7px;position:relative}
+    .package-choice-card span{display:block;color:var(--muted);font-size:.86rem;line-height:1.48;position:relative}
+    .package-choice-card small{display:inline-flex;margin-top:12px;color:#ffd0a0;font-weight:850;position:relative}
+    .package-choice-card:hover,.package-choice-card.active{
+      border-color:rgba(255,122,0,.52);
+      background:rgba(255,122,0,.12);
+      transform:translateY(-3px);
+      box-shadow:0 16px 42px rgba(0,0,0,.30);
+    }
+    .package-choice-card:hover::before,.package-choice-card.active::before{opacity:1}
+    .package-choice-card.active::after{
+      content:"Sélectionné";
+      position:absolute;
+      right:12px;
+      top:12px;
+      border-radius:999px;
+      padding:6px 9px;
+      background:linear-gradient(135deg,var(--orange),var(--gold));
+      color:#170b02;
+      font-size:.72rem;
+      font-weight:900;
+    }
+    .package-helper{display:block;color:var(--muted);font-size:.84rem;line-height:1.5;margin-top:10px}
 
     .gallery-grid{
       display:grid;
@@ -846,6 +960,122 @@
     .footer-links button{background:transparent;border:0;color:var(--muted);cursor:pointer}
     .footer-links button:hover{color:#fff}
 
+
+
+    /* Améliorations dynamiques : parcours guidé, animations professionnelles et sécurité images */
+    .btn{position:relative;overflow:hidden;transform:translateZ(0)}
+    .btn::after{
+      content:"";
+      position:absolute;
+      inset:-40% -70%;
+      background:linear-gradient(90deg, transparent, rgba(255,255,255,.34), transparent);
+      transform:translateX(-70%) rotate(12deg);
+      transition:transform .75s ease;
+      pointer-events:none;
+    }
+    .btn:hover::after{transform:translateX(70%) rotate(12deg)}
+    .btn-primary{animation:buttonPulse 3.8s ease-in-out infinite}
+    @keyframes buttonPulse{
+      0%,100%{box-shadow:0 16px 38px rgba(255,122,0,.25)}
+      50%{box-shadow:0 18px 58px rgba(255,122,0,.42)}
+    }
+    .hero-content{animation:heroRise .75s ease both}
+    @keyframes heroRise{from{opacity:0;transform:translateY(28px)}to{opacity:1;transform:translateY(0)}}
+    .hero::before{animation:heroZoom 14s ease-in-out infinite alternate}
+    @keyframes heroZoom{from{transform:scale(1.02)}to{transform:scale(1.08)}}
+    .card-icon{animation:iconFloat 4.8s ease-in-out infinite}
+    @keyframes iconFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-5px)}}
+
+    .smart-reservation-shell{
+      display:grid;
+      gap:18px;
+      margin-top:24px;
+    }
+    .flow-stepper{
+      display:grid;
+      grid-template-columns:repeat(3,minmax(0,1fr));
+      gap:12px;
+      margin-top:22px;
+    }
+    .flow-step{
+      border:1px solid var(--line);
+      background:rgba(0,0,0,.22);
+      border-radius:20px;
+      padding:16px;
+      position:relative;
+      overflow:hidden;
+    }
+    .flow-step::before{
+      content:"";
+      position:absolute;
+      inset:0;
+      background:linear-gradient(135deg, rgba(255,122,0,.12), transparent 54%);
+      opacity:0;
+      transition:.25s ease;
+    }
+    .flow-step.active::before,.flow-step:hover::before{opacity:1}
+    .flow-step strong{display:block;color:#fff;margin-bottom:7px;position:relative;z-index:1}
+    .flow-step span{display:block;color:var(--muted);font-size:.88rem;line-height:1.48;position:relative;z-index:1}
+    .booking-choice-stage{
+      display:grid;
+      grid-template-columns:repeat(2,minmax(0,1fr));
+      gap:14px;
+      margin-top:18px;
+    }
+    .booking-mode-btn{
+      min-height:116px;
+      box-shadow:0 14px 40px rgba(0,0,0,.18);
+    }
+    .booking-mode-btn.active{
+      box-shadow:0 18px 55px rgba(255,122,0,.17), inset 0 0 0 1px rgba(255,122,0,.22);
+    }
+    .booking-empty-state{
+      border:1px dashed rgba(255,122,0,.38);
+      background:rgba(255,122,0,.055);
+      border-radius:24px;
+      padding:22px;
+      margin-bottom:18px;
+      color:var(--muted);
+      line-height:1.65;
+    }
+    .booking-empty-state strong{display:block;color:#fff;margin-bottom:8px;font-size:1.08rem}
+    .booking-panel.active{animation:panelSlide .38s ease both}
+    @keyframes panelSlide{from{opacity:0;transform:translateY(16px) scale(.98)}to{opacity:1;transform:translateY(0) scale(1)}}
+    .mini-cocktail-card,.theme-card,.gallery-card,.catalog-card,.service-card,.package-card,.trust-card{
+      animation:itemLift .5s ease both;
+    }
+    @keyframes itemLift{from{opacity:0;transform:translateY(18px)}to{opacity:1;transform:translateY(0)}}
+    .mini-cocktail-card:nth-child(2),.theme-card:nth-child(2),.gallery-card:nth-child(2),.catalog-card:nth-child(2){animation-delay:.04s}
+    .mini-cocktail-card:nth-child(3),.theme-card:nth-child(3),.gallery-card:nth-child(3),.catalog-card:nth-child(3){animation-delay:.08s}
+    .mini-cocktail-card:nth-child(4),.theme-card:nth-child(4),.gallery-card:nth-child(4),.catalog-card:nth-child(4){animation-delay:.12s}
+    .mini-cocktail-card:nth-child(5),.theme-card:nth-child(5),.gallery-card:nth-child(5),.catalog-card:nth-child(5){animation-delay:.16s}
+    .mini-cocktail-card:nth-child(6),.theme-card:nth-child(6),.gallery-card:nth-child(6),.catalog-card:nth-child(6){animation-delay:.20s}
+    .mini-cocktail-card:nth-child(7),.gallery-card:nth-child(7),.catalog-card:nth-child(7){animation-delay:.24s}
+    .mini-cocktail-card:nth-child(8),.gallery-card:nth-child(8),.catalog-card:nth-child(8){animation-delay:.28s}
+    .mini-cocktail-card:nth-child(9),.gallery-card:nth-child(9),.catalog-card:nth-child(9){animation-delay:.32s}
+    .gallery-status{
+      display:flex;
+      align-items:center;
+      justify-content:space-between;
+      gap:14px;
+      flex-wrap:wrap;
+      color:var(--muted);
+      border:1px solid var(--line);
+      background:rgba(255,255,255,.045);
+      border-radius:18px;
+      padding:13px 16px;
+      margin:0 0 18px;
+      font-size:.92rem;
+      line-height:1.5;
+    }
+    .gallery-status strong{color:#fff}
+    .image-safe-note{
+      color:#ffd1a4;
+      font-weight:750;
+    }
+    .reveal-on-scroll{opacity:0;transform:translateY(22px);transition:.65s ease}
+    .reveal-on-scroll.visible{opacity:1;transform:translateY(0)}
+
     @media (max-width: 1060px){
       .main-nav{
         position:fixed;
@@ -868,9 +1098,9 @@
       .nav-actions .btn{display:none}
       .about-grid,.split-layout,.contact-layout,.reservation-flow,.footer-cta-card,.footer-main{grid-template-columns:1fr}
       .sticky-box,.contact-aside,.booking-form-card{position:relative;top:0}
-      .trust-grid,.service-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .trust-grid,.service-grid,.packages-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
       .catalog-grid,.gallery-grid,.quick-contact-list{grid-template-columns:repeat(2,minmax(0,1fr))}
-      .event-picker,.pack-builder,.booking-tabs,.theme-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+      .event-picker,.pack-builder,.booking-tabs,.theme-grid,.package-choice-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
     }
 
     @media (max-width: 720px){
@@ -887,7 +1117,9 @@
       section.block{padding:62px 0}
       .section-head{display:grid;gap:16px}
       .about-media{min-height:350px}
-      .signature-line,.trust-grid,.service-grid,.catalog-grid,.gallery-grid,.event-picker,.pack-builder,.form-grid,.booking-tabs,.theme-grid,.mini-catalog-grid,.quick-contact-list,.footer-columns{grid-template-columns:1fr}
+      .signature-line,.trust-grid,.service-grid,.packages-grid,.catalog-grid,.gallery-grid,.event-picker,.pack-builder,.package-choice-grid,.form-grid,.booking-tabs,.theme-grid,.mini-catalog-grid,.quick-contact-list,.footer-columns{grid-template-columns:1fr}
+
+      .flow-stepper,.booking-choice-stage{grid-template-columns:1fr}
       .field.full{grid-column:auto}
       .drink-tile{width:210px;height:144px;border-radius:20px}
       .marquee-track{gap:12px}
@@ -929,7 +1161,7 @@
       <div class="hero" style="--hero-img:url('https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=1800&q=80')">
         <div class="container">
           <div class="hero-content">
-            <span class="eyebrow">Bar mobile & cocktail sur mesure</span>
+            <span class="eyebrow">LIO ICE, LE BAR MOBILE À COCKTAIL</span>
             <h1>Des cocktails d’exception pour vos plus beaux événements.</h1>
             <p>Lio Ice Style vous accompagne depuis 2017 : un bar élégant, des créations uniques et une équipe passionnée pour transformer chaque réception en moment inoubliable.</p>
             <div class="hero-actions">
@@ -944,6 +1176,58 @@
           </div>
         </div>
       </div>
+
+      <section class="block" id="packages">
+        <div class="container">
+          <div class="section-head">
+            <div class="section-title">
+              <p class="section-kicker">Nos packages</p>
+              <h2>Des formules claires pour vos événements.</h2>
+              <p>Chaque package est pensé pour une prestation de 50 à 100 personnes, avec service inclus. Le transport reste à la charge du client.</p>
+            </div>
+            <button class="btn btn-secondary" data-go="reservation">Réserver un package</button>
+          </div>
+          <div class="packages-grid">
+            <article class="package-card">
+              <span class="package-label">Ice Mini Package</span>
+              <h3>Essentiel et efficace</h3>
+              <p class="text-muted">Pour une réception simple avec un service clair et une sélection ciblée.</p>
+              <div class="package-price"><strong>4 $</strong><span>par personne</span></div>
+              <ul>
+                <li>50 à 100 personnes</li>
+                <li>Sélection de 2 spécialités</li>
+                <li>Service inclus</li>
+                <li>Transport non inclus</li>
+              </ul>
+            </article>
+            <article class="package-card featured">
+              <span class="package-label">Ice Standard Package</span>
+              <h3>L’équilibre idéal</h3>
+              <p class="text-muted">La formule recommandée pour offrir plus de choix aux invités.</p>
+              <div class="package-price"><strong>5,5 $</strong><span>par personne</span></div>
+              <ul>
+                <li>50 à 100 personnes</li>
+                <li>Sélection de 4 spécialités</li>
+                <li>Service inclus</li>
+                <li>Transport non inclus</li>
+              </ul>
+            </article>
+            <article class="package-card">
+              <span class="package-label">Ice Premium Package</span>
+              <h3>Personnalisation avancée</h3>
+              <p class="text-muted">Pour une prestation plus travaillée, adaptée à l’image de votre événement.</p>
+              <div class="package-price"><strong>5,5 $ +</strong><span>par personne</span></div>
+              <ul>
+                <li>50 à 100 personnes</li>
+                <li>Personnalisation selon la demande</li>
+                <li>Menu, bar et choix des verres</li>
+                <li>Prix final selon les options retenues</li>
+              </ul>
+            </article>
+          </div>
+          <p class="packages-note">Le nombre exact de personnes, le choix des spécialités et les détails du lieu sont confirmés lors de la réservation.</p>
+        </div>
+      </section>
 
       <section class="block" id="about">
         <div class="container">
@@ -1098,6 +1382,7 @@
             </div>
           </div>
           <div class="filter-bar" id="galleryFilters"></div>
+          <div class="gallery-status" id="galleryStatus"><strong>Chargement des réalisations</strong><span>Vérification automatique des images en cours.</span></div>
           <div class="gallery-grid" id="galleryGrid"></div>
         </div>
       </section>
@@ -1118,23 +1403,35 @@
         <div class="container">
           <div class="booking-intro-card">
             <p class="section-kicker">Parcours simplifié</p>
-            <h2>Une réservation plus rapide, plus claire et plus visuelle.</h2>
-            <p>Vous n’avez pas besoin de tout expliquer dès le départ. Commencez par choisir ce qui vous inspire : des cocktails précis ou un thème d’événement. Le formulaire ne garde ensuite que les informations essentielles pour préparer votre demande sur WhatsApp.</p>
-            <div class="booking-tabs" id="bookingModeTabs">
-              <button class="booking-mode-btn active" type="button" data-booking-mode="cocktails">
-                <span class="card-icon"><i data-lucide="glass-water" class="icon"></i></span>
-                <span><strong>Réserver par cocktails</strong><span>Choisissez les cocktails que vous voulez proposer à vos invités.</span></span>
-              </button>
+            <h2>Réservez sans voir toutes les options en même temps.</h2>
+            <p>Commencez par choisir votre manière de réserver. Si vous choisissez un événement, les types d’événements apparaissent. Si vous choisissez les cocktails, seuls les cocktails à sélectionner s’affichent.</p>
+
+            <div class="flow-stepper" aria-label="Étapes de réservation">
+              <div class="flow-step active"><strong>1. Choisir</strong><span>Sélectionnez le mode de réservation qui correspond à votre besoin.</span></div>
+              <div class="flow-step"><strong>2. Sélectionner</strong><span>Les événements ou les cocktails apparaissent uniquement après votre choix.</span></div>
+              <div class="flow-step"><strong>3. Envoyer</strong><span>Le formulaire génère un message WhatsApp clair et complet.</span></div>
+            </div>
+
+            <div class="booking-choice-stage" id="bookingModeTabs">
               <button class="booking-mode-btn" type="button" data-booking-mode="theme">
-                <span class="card-icon"><i data-lucide="sparkles" class="icon"></i></span>
-                <span><strong>Réserver par thème</strong><span>Sélectionnez une ambiance : mariage, anniversaire, corporate ou atelier.</span></span>
+                <span class="card-icon"><i data-lucide="calendar-check" class="icon"></i></span>
+                <span><strong>Réserver un événement</strong><span>Mariage, anniversaire, corporate, cérémonie, exposition ou atelier cocktail.</span></span>
+              </button>
+              <button class="booking-mode-btn" type="button" data-booking-mode="cocktails">
+                <span class="card-icon"><i data-lucide="glass-water" class="icon"></i></span>
+                <span><strong>Choisir des cocktails</strong><span>Ajoutez les boissons que vous souhaitez proposer à vos invités.</span></span>
               </button>
             </div>
           </div>
 
           <div class="reservation-flow">
             <div class="glass-card">
-              <div class="booking-panel active" id="panelCocktails">
+              <div class="booking-empty-state" id="bookingEmptyState">
+                <strong>Choisissez d’abord votre mode de réservation.</strong>
+                Utilisez les deux boutons au-dessus. Les événements ou les cocktails s’afficheront ensuite ici, sans mélanger toutes les options.
+              </div>
+
+              <div class="booking-panel" id="panelCocktails">
                 <div class="booking-panel-head">
                   <div>
                     <p class="section-kicker">Sélection cocktails</p>
@@ -1159,29 +1456,65 @@
 
               <div class="selection-summary">
                 <h3>Votre sélection</h3>
-                <div class="summary-line"><strong>Mode de réservation</strong><span id="summaryMode">Réservation par cocktails</span></div>
+                <div class="summary-line"><strong>Mode de réservation</strong><span id="summaryMode">À choisir</span></div>
                 <div class="summary-line"><strong>Thème retenu</strong><span id="summaryTheme">À préciser</span></div>
                 <div class="summary-line"><strong>Cocktails sélectionnés</strong><div class="selected-drinks" id="selectedDrinks"></div></div>
+                <div class="summary-line"><strong>Package choisi</strong><span id="summaryPackage">À choisir</span></div>
+                <div class="summary-line"><strong>Estimation</strong><span id="summaryEstimate">Indiquez le nombre d’invités pour calculer l’estimation.</span></div>
               </div>
             </div>
 
             <form id="bookingForm" class="booking-form-card">
-              <input type="hidden" id="selectedModeField" name="selectedMode" value="Réservation par cocktails" />
+              <input type="hidden" id="selectedModeField" name="selectedMode" value="" />
               <input type="hidden" id="selectedThemeField" name="selectedTheme" value="" />
               <input type="hidden" id="wantedDrinks" name="wantedDrinks" value="" />
               <div class="form-grid">
                 <div class="field"><label for="fullName">Nom complet</label><input id="fullName" name="fullName" type="text" placeholder="Votre nom" required /></div>
                 <div class="field"><label for="clientPhone">Numéro WhatsApp</label><input id="clientPhone" name="clientPhone" type="tel" placeholder="Exemple : +243 000 000 000" required /></div>
                 <div class="field"><label for="eventDate">Date de l’événement</label><input id="eventDate" name="eventDate" type="date" required /></div>
+                <div class="field">
+                  <label for="eventType">Type d’événement</label>
+                  <select id="eventType" name="eventType" required>
+                    <option value="">Choisir un type</option>
+                    <option value="Mariage">Mariage</option>
+                    <option value="Anniversaire">Anniversaire</option>
+                    <option value="Événement corporate">Événement corporate</option>
+                    <option value="Cérémonie privée">Cérémonie privée</option>
+                    <option value="Exposition ou stand">Exposition ou stand</option>
+                    <option value="Atelier cocktail">Atelier cocktail</option>
+                    <option value="Autre événement">Autre événement</option>
+                  </select>
+                </div>
                 <div class="field"><label for="guestCount">Nombre approximatif d’invités</label><input id="guestCount" name="guestCount" type="number" min="1" placeholder="Exemple : 80" required /></div>
+                <div class="field full">
+                  <label for="packageSelect">Package souhaité</label>
+                  <select id="packageSelect" name="packageSelect" required>
+                    <option value="" selected disabled>Choisir un package</option>
+                    <option value="mini">Ice Mini Package — 4 $ / personne</option>
+                    <option value="standard">Ice Standard Package — 5,5 $ / personne</option>
+                    <option value="premium">Ice Premium Package — à partir de 5,5 $ / personne</option>
+                  </select>
+                  <div class="package-choice-grid" id="bookingPackageCards" aria-label="Choix rapide du package"></div>
+                  <small class="package-helper">Aucun package n’est imposé. Vous pouvez choisir, changer ou modifier votre package avant l’envoi.</small>
+                </div>
                 <div class="field full"><label for="eventPlace">Lieu de l’événement</label><input id="eventPlace" name="eventPlace" type="text" placeholder="Ville, commune ou adresse" required /></div>
                 <div class="field full">
                   <label>Options souhaitées</label>
                   <div class="pack-builder" id="bookingPackBuilder"></div>
                 </div>
+                <div class="field full booking-estimate">
+                  <strong>Estimation automatique</strong>
+                  <span id="estimateText">Indiquez le nombre d’invités pour calculer l’estimation.</span>
+                </div>
                 <div class="field full"><label for="message">Message complémentaire</label><textarea id="message" name="message" placeholder="Ajoutez le thème, les horaires, le style de décoration ou toute précision utile."></textarea></div>
+                <div class="field full consent-box">
+                  <input id="bookingConsent" name="bookingConsent" type="checkbox" required />
+                  <label for="bookingConsent">J’y consens : je reconnais devoir verser un acompte de 75 % pour confirmer la date. Je reconnais également que cet acompte sera non remboursable en cas de changement de date ou d’annulation, que le solde devra être payé une semaine avant la prestation, et que toute casse de verre sera facturée à 3 $ par verre endommagé.
+                    <small>Cette acceptation sera reprise dans le message WhatsApp.</small>
+                  </label>
+                </div>
               </div>
-              <p class="form-note">Après validation, WhatsApp s’ouvre avec un message automatiquement structuré à partir de votre sélection.</p>
+              <p class="form-note">Après validation, WhatsApp s’ouvre avec un message automatiquement structuré, incluant le package, l’estimation, le règlement accepté et la mention de réservation via le site internet.</p>
               <div style="margin-top:18px;display:flex;gap:12px;flex-wrap:wrap">
                 <button class="btn btn-primary" type="submit">Envoyer ma demande sur WhatsApp</button>
                 <button class="btn btn-secondary" type="reset">Recommencer</button>
@@ -1275,6 +1608,13 @@
   <script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
   <script>
     const WHATSAPP_NUMBER = "24397958905";
+    const BOOKING_SOURCE_TEXT = "Réservation effectuée à partir du site internet.";
+    const BOOKING_CONSENT_TEXT = "J’y consens : je reconnais devoir verser un acompte de 75 % pour confirmer la date. Je reconnais également que cet acompte sera non remboursable en cas de changement de date ou d’annulation, que le solde devra être payé une semaine avant la prestation, et que toute casse de verre sera facturée à 3 $ par verre endommagé.";
+    const LIO_PACKAGES = {
+      mini: { name:'Ice Mini Package', price:4, priceText:'4 $ / personne', details:'Sélection de 2 spécialités, service inclus, transport non inclus.' },
+      standard: { name:'Ice Standard Package', price:5.5, priceText:'5,5 $ / personne', details:'Sélection de 4 spécialités, service inclus, transport non inclus.' },
+      premium: { name:'Ice Premium Package', price:5.5, priceText:'À partir de 5,5 $ / personne', details:'Personnalisation selon la demande du client : menu, bar et choix des verres.' }
+    };
 
     const img = (id, w = 900) => `https://images.unsplash.com/${id}?auto=format&fit=crop&w=${w}&q=80`;
 
@@ -1361,8 +1701,53 @@
     ];
 
     let selectedCocktails = [];
-    let bookingMode = 'cocktails';
+    let bookingMode = '';
     let selectedTheme = '';
+
+
+    function createFallbackImage(label = 'Lio Ice Style'){
+      const cleanLabel = String(label).replace(/[<>]/g, '').slice(0, 48) || 'Lio Ice Style';
+      const svg = `<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="760" viewBox="0 0 1200 760"><defs><linearGradient id="g" x1="0" x2="1" y1="0" y2="1"><stop stop-color="#120b06"/><stop offset=".55" stop-color="#2b1607"/><stop offset="1" stop-color="#ff7a00"/></linearGradient><radialGradient id="r" cx="28%" cy="28%" r="65%"><stop stop-color="#e6b15c" stop-opacity=".55"/><stop offset="1" stop-color="#000" stop-opacity="0"/></radialGradient></defs><rect width="1200" height="760" fill="url(#g)"/><rect width="1200" height="760" fill="url(#r)"/><circle cx="930" cy="140" r="170" fill="#ffffff" opacity=".07"/><circle cx="260" cy="620" r="210" fill="#000" opacity=".18"/><text x="80" y="380" fill="#ffffff" font-family="Arial, sans-serif" font-size="56" font-weight="700">${cleanLabel}</text><text x="82" y="440" fill="#f5d29d" font-family="Arial, sans-serif" font-size="28">Lio Ice Style</text></svg>`;
+      return `data:image/svg+xml;charset=UTF-8,${encodeURIComponent(svg)}`;
+    }
+
+    function setImageFallback(image, label){
+      if(!image || image.dataset.fallbackApplied === 'true') return;
+      image.dataset.fallbackApplied = 'true';
+      image.onerror = null;
+      image.src = createFallbackImage(label || image.alt || 'Lio Ice Style');
+    }
+
+    function bindImageGuards(){
+      document.querySelectorAll('img').forEach(image => {
+        if(!image.dataset.guarded){
+          image.dataset.guarded = 'true';
+          image.addEventListener('error', () => setImageFallback(image, image.alt), {once:true});
+        }
+        if(image.complete && image.naturalWidth === 0){
+          setImageFallback(image, image.alt);
+        }
+      });
+    }
+
+    function refreshMotion(){
+      const animated = document.querySelectorAll('.service-card,.package-card,.catalog-card,.gallery-card,.mini-cocktail-card,.theme-card,.trust-card,.glass-card,.booking-intro-card');
+      animated.forEach((item, index) => {
+        item.classList.add('reveal-on-scroll');
+        item.style.transitionDelay = `${Math.min(index * 35, 280)}ms`;
+      });
+      if(!window.motionObserver){
+        window.motionObserver = new IntersectionObserver((entries) => {
+          entries.forEach(entry => {
+            if(entry.isIntersecting){
+              entry.target.classList.add('visible');
+              window.motionObserver.unobserve(entry.target);
+            }
+          });
+        }, {threshold:.12});
+      }
+      animated.forEach(item => window.motionObserver.observe(item));
+    }
 
     function initIcons(){
       if(window.lucide){ lucide.createIcons(); }
@@ -1394,6 +1779,8 @@
           </figure>`).join('');
         return `<div class="marquee-row ${index === 1 ? 'reverse' : ''} ${index === 2 ? 'slow' : ''}"><div class="marquee-track">${items}</div></div>`;
       }).join('');
+      bindImageGuards();
+      refreshMotion();
     }
 
     function renderServices(){
@@ -1404,6 +1791,7 @@
           <h3>${title}</h3>
           <p>${desc}</p>
         </article>`).join('');
+      refreshMotion();
     }
 
     function renderCatalogFilters(){
@@ -1430,12 +1818,14 @@
             <button class="btn btn-secondary btn-small" data-add-cocktail="${item.name}">Ajouter à ma réservation</button>
           </div>
         </article>`).join('');
+      bindImageGuards();
+      refreshMotion();
       initIcons();
     }
 
     function addCocktail(name){
       if(!selectedCocktails.includes(name)){ selectedCocktails.push(name); }
-      bookingMode = 'cocktails';
+      setBookingMode('cocktails');
       updateSelectedCocktails();
       updateBookingSummary();
       showToast(`${name} a été ajouté à votre réservation.`);
@@ -1478,6 +1868,8 @@
             <button class="btn btn-secondary btn-small" type="button" data-add-cocktail="${item.name}">${selectedCocktails.includes(item.name) ? 'Déjà sélectionné' : 'Ajouter'}</button>
           </div>
         </article>`).join('');
+      bindImageGuards();
+      refreshMotion();
     }
 
     function renderBookingThemes(){
@@ -1487,30 +1879,99 @@
         const [title, text] = recommendations[key];
         return `<button class="theme-card ${selectedTheme === key ? 'active' : ''}" type="button" data-select-theme="${key}"><strong>${title}</strong><span>${text}</span></button>`;
       }).join('');
+      refreshMotion();
     }
 
     function setBookingMode(mode){
-      bookingMode = mode === 'theme' ? 'theme' : 'cocktails';
+      const normalized = mode === 'theme' ? 'theme' : mode === 'cocktails' ? 'cocktails' : '';
+      bookingMode = normalized;
       document.querySelectorAll('[data-booking-mode]').forEach(btn => btn.classList.toggle('active', btn.dataset.bookingMode === bookingMode));
+      document.querySelectorAll('.flow-step').forEach((step, index) => step.classList.toggle('active', index === 0 || (bookingMode && index === 1)));
+      const emptyState = document.getElementById('bookingEmptyState');
       const cocktailPanel = document.getElementById('panelCocktails');
       const themePanel = document.getElementById('panelTheme');
+      if(emptyState) emptyState.style.display = bookingMode ? 'none' : 'block';
       if(cocktailPanel) cocktailPanel.classList.toggle('active', bookingMode === 'cocktails');
       if(themePanel) themePanel.classList.toggle('active', bookingMode === 'theme');
-      if(bookingMode === 'theme' && !selectedTheme){ selectTheme(Object.keys(recommendations)[0], false); }
       updateBookingSummary();
+      refreshMotion();
       initIcons();
     }
 
     function selectTheme(theme, notify=true){
       selectedTheme = theme;
       setBookingMode('theme');
+      const eventTypeSelect = document.getElementById('eventType');
+      if(eventTypeSelect && [...eventTypeSelect.options].some(option => option.value === theme)){
+        eventTypeSelect.value = theme;
+      }
       renderBookingThemes();
       updateBookingSummary();
       if(notify) showToast(`${theme} a été sélectionné pour votre réservation.`);
     }
 
+    function getSelectedPackage(){
+      const select = document.getElementById('packageSelect');
+      if(!select?.value || !LIO_PACKAGES[select.value]) return null;
+      return LIO_PACKAGES[select.value];
+    }
+
+    function getPackageEstimate(){
+      const guests = Number(document.getElementById('guestCount')?.value || 0);
+      const selectedPackage = getSelectedPackage();
+      if(!selectedPackage){
+        return { guests, selectedPackage:null, label:'Choisissez d’abord un package pour calculer l’estimation.' };
+      }
+      if(!guests){
+        return { guests:0, selectedPackage, label:'Indiquez le nombre d’invités pour calculer l’estimation.' };
+      }
+      const amount = guests * selectedPackage.price;
+      const amountText = amount % 1 === 0 ? `${amount.toFixed(0)} $` : `${amount.toFixed(2).replace('.', ',')} $`;
+      const prefix = selectedPackage.name === 'Ice Premium Package' ? 'À partir de ' : '';
+      const rangeNote = guests < 50 || guests > 100 ? ' Packages prévus pour 50 à 100 personnes : confirmation nécessaire avec l’équipe.' : '';
+      return {
+        guests,
+        selectedPackage,
+        amountText,
+        label:`${prefix}${amountText} pour ${guests} personne${guests > 1 ? 's' : ''}, hors transport.${rangeNote}`
+      };
+    }
+
+    function selectPackage(packageKey, notify = true){
+      const select = document.getElementById('packageSelect');
+      if(!select || !LIO_PACKAGES[packageKey]) return;
+      select.value = packageKey;
+      updatePackageEstimate();
+      renderPackageCards();
+      if(notify) showToast(`${LIO_PACKAGES[packageKey].name} a été choisi. Vous pouvez encore le modifier avant l’envoi.`);
+    }
+
+    function renderPackageCards(){
+      const holder = document.getElementById('bookingPackageCards');
+      const select = document.getElementById('packageSelect');
+      if(!holder) return;
+      const current = select?.value || '';
+      holder.innerHTML = Object.entries(LIO_PACKAGES).map(([key, pack]) => `
+        <button class="package-choice-card ${current === key ? 'active' : ''}" type="button" data-package-choice="${key}" aria-pressed="${current === key}">
+          <strong>${pack.name}</strong>
+          <span>${pack.details}</span>
+          <small>${pack.priceText}</small>
+        </button>`).join('');
+    }
+
+    function updatePackageEstimate(){
+      const estimate = getPackageEstimate();
+      const estimateText = document.getElementById('estimateText');
+      const summaryPackage = document.getElementById('summaryPackage');
+      const summaryEstimate = document.getElementById('summaryEstimate');
+      if(estimateText) estimateText.textContent = estimate.label;
+      if(summaryPackage) summaryPackage.textContent = estimate.selectedPackage ? `${estimate.selectedPackage.name} — ${estimate.selectedPackage.priceText}` : 'À choisir';
+      if(summaryEstimate) summaryEstimate.textContent = estimate.label;
+      renderPackageCards();
+    }
+
     function updateBookingSummary(){
-      const modeLabel = bookingMode === 'theme' ? 'Réservation par thème' : 'Réservation par cocktails';
+      const modeLabel = bookingMode === 'theme' ? 'Réservation par événement' : bookingMode === 'cocktails' ? 'Réservation par cocktails' : 'À choisir';
       const modeEl = document.getElementById('summaryMode');
       const themeEl = document.getElementById('summaryTheme');
       const modeField = document.getElementById('selectedModeField');
@@ -1521,7 +1982,10 @@
       if(modeField) modeField.value = modeLabel;
       if(themeField) themeField.value = selectedTheme || '';
       if(drinksField) drinksField.value = selectedCocktails.join(', ');
-      renderBookingCocktails(document.querySelector('[data-booking-cocktail-filter].active')?.dataset.bookingCocktailFilter || 'Tous');
+      updatePackageEstimate();
+      const activeFilter = document.querySelector('[data-booking-cocktail-filter].active')?.dataset.bookingCocktailFilter || 'Tous';
+      renderBookingCocktails(activeFilter);
+      bindImageGuards();
     }
 
     function renderEventPicker(){
@@ -1570,18 +2034,28 @@
 
     function renderGallery(filter='Tous'){
       const grid = document.getElementById('galleryGrid');
+      const status = document.getElementById('galleryStatus');
       const data = filter === 'Tous' ? gallery : gallery.filter(item => item.cat === filter);
       grid.innerHTML = data.map((item, index) => `
         <article class="gallery-card" data-gallery-index="${gallery.indexOf(item)}" tabindex="0" role="button" aria-label="Ouvrir ${item.title}">
-          <img src="${item.image}" alt="${item.title}" loading="lazy">
+          <img src="${item.image}" alt="${item.title}" loading="lazy" onerror="setImageFallback(this, '${item.title.replace(/'/g, "\'")}')">
           <div class="gallery-overlay"><strong>${item.title}</strong><span>${item.text}</span></div>
         </article>`).join('');
+      if(status){
+        const total = gallery.length;
+        const current = data.length;
+        status.innerHTML = `<strong>${current} photo${current > 1 ? 's' : ''} affichée${current > 1 ? 's' : ''}${filter === 'Tous' ? ` sur ${total}` : ''}</strong><span class="image-safe-note">Chaque image possède une alternative automatique en cas de chargement impossible.</span>`;
+      }
+      bindImageGuards();
+      refreshMotion();
     }
 
     function openModal(index){
       const item = gallery[index];
       const modal = document.getElementById('imageModal');
-      document.getElementById('modalImage').src = item.image;
+      const modalImage = document.getElementById('modalImage');
+      modalImage.src = item.image;
+      modalImage.onerror = () => setImageFallback(modalImage, item.title);
       document.getElementById('modalTitle').textContent = item.title;
       document.getElementById('modalText').textContent = item.text;
       modal.classList.add('active');
@@ -1598,6 +2072,11 @@
       e.preventDefault();
       const form = e.currentTarget;
       updateBookingSummary();
+      if(!bookingMode){
+        showToast('Choisissez d’abord le mode de réservation : événement ou cocktails.');
+        setBookingMode('');
+        return;
+      }
       if(bookingMode === 'cocktails' && selectedCocktails.length === 0){
         showToast('Choisissez au moins un cocktail ou passez en réservation par thème.');
         setBookingMode('cocktails');
@@ -1609,16 +2088,33 @@
         return;
       }
       if(!form.reportValidity()) return;
+      const consent = document.getElementById('bookingConsent');
+      if(!consent?.checked){
+        showToast('Veuillez accepter les conditions de réservation avant l’envoi.');
+        consent?.focus();
+        return;
+      }
       const data = new FormData(form);
       const selectedPack = [...form.querySelectorAll('input[name="pack"]:checked')].map(input => input.value).join(', ') || 'À préciser';
       const themeLabel = selectedTheme || 'À préciser';
       const cocktailLabel = selectedCocktails.length ? selectedCocktails.join(', ') : 'À préciser avec l’équipe';
+      const packageEstimate = getPackageEstimate();
+      if(!packageEstimate.selectedPackage){
+        showToast('Choisissez le package souhaité avant l’envoi.');
+        document.getElementById('packageSelect')?.focus();
+        return;
+      }
       const lines = [
         'Bonjour Lio Ice Style, je souhaite réserver une prestation.',
+        BOOKING_SOURCE_TEXT,
         '',
-        `Mode de réservation : ${bookingMode === 'theme' ? 'Par thème' : 'Par cocktails'}`,
+        `Mode de réservation : ${bookingMode === 'theme' ? 'Par événement' : 'Par cocktails'}`,
+        `Type d’événement : ${data.get('eventType')}`,
         `Thème d’événement : ${themeLabel}`,
         `Cocktails sélectionnés : ${cocktailLabel}`,
+        `Package choisi : ${packageEstimate.selectedPackage.name} — ${packageEstimate.selectedPackage.priceText}`,
+        `Détails du package : ${packageEstimate.selectedPackage.details}`,
+        `Estimation : ${packageEstimate.label}`,
         `Options souhaitées : ${selectedPack}`,
         '',
         `Nom complet : ${data.get('fullName')}`,
@@ -1626,7 +2122,9 @@
         `Date de l’événement : ${data.get('eventDate')}`,
         `Lieu de l’événement : ${data.get('eventPlace')}`,
         `Nombre approximatif d’invités : ${data.get('guestCount')}`,
-        `Message complémentaire : ${data.get('message') || 'Aucun'}`
+        `Message complémentaire : ${data.get('message') || 'Aucun'}`,
+        '',
+        `Règlement accepté : ${BOOKING_CONSENT_TEXT}`
       ];
       const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(lines.join('\n'))}`;
       window.open(url, '_blank');
@@ -1641,12 +2139,14 @@
       const bookThemeBtn = e.target.closest('[data-book-theme]');
       const cocktailBtn = e.target.closest('[data-add-cocktail]');
       const removeCocktail = e.target.closest('[data-remove-cocktail]');
+      const packageChoice = e.target.closest('[data-package-choice]');
       const galleryItem = e.target.closest('[data-gallery-index]');
 
       if(openBooking){ e.preventDefault(); setBookingMode(openBooking.dataset.bookingOpen); setPage('reservation'); return; }
       if(bookingModeBtn){ setBookingMode(bookingModeBtn.dataset.bookingMode); return; }
       if(themeBtn){ selectTheme(themeBtn.dataset.selectTheme); return; }
       if(bookThemeBtn){ e.preventDefault(); selectTheme(bookThemeBtn.dataset.bookTheme); setPage('reservation'); return; }
+      if(packageChoice){ selectPackage(packageChoice.dataset.packageChoice); return; }
       if(navTarget){ setPage(navTarget.dataset.page); }
       if(goTarget){ e.preventDefault(); setPage(goTarget.dataset.go); }
       if(cocktailBtn){ addCocktail(cocktailBtn.dataset.addCocktail); }
@@ -1658,12 +2158,19 @@
       if(galleryItem){ openModal(Number(galleryItem.dataset.galleryIndex)); }
     });
 
+    document.getElementById('guestCount')?.addEventListener('input', updatePackageEstimate);
+    document.getElementById('packageSelect')?.addEventListener('change', () => { updatePackageEstimate(); renderPackageCards(); });
     document.getElementById('menuToggle').addEventListener('click', () => document.body.classList.toggle('menu-open'));
     document.getElementById('bookingForm').addEventListener('submit', submitBooking);
-    document.getElementById('bookingForm').addEventListener('reset', () => { setTimeout(() => { selectedCocktails = []; selectedTheme = ''; setBookingMode('cocktails'); updateSelectedCocktails(); updateBookingSummary(); }, 0); });
+    document.getElementById('bookingForm').addEventListener('reset', () => { setTimeout(() => { selectedCocktails = []; selectedTheme = ''; setBookingMode(''); updateSelectedCocktails(); renderPackageCards(); updateBookingSummary(); }, 0); });
     document.getElementById('modalClose').addEventListener('click', closeModal);
     document.getElementById('imageModal').addEventListener('click', (e) => { if(e.target.id === 'imageModal') closeModal(); });
     document.addEventListener('keydown', (e) => { if(e.key === 'Escape') closeModal(); });
+
+
+
+    const imageMutationObserver = new MutationObserver(() => bindImageGuards());
+    imageMutationObserver.observe(document.body, {childList:true, subtree:true});
 
     renderMarquees();
     renderServices();
@@ -1671,6 +2178,7 @@
     renderCatalog();
     renderEventPicker();
     renderPackOptions();
+    renderPackageCards();
     renderGalleryFilters();
     renderGallery();
     renderBookingCocktailFilters();
@@ -1678,6 +2186,9 @@
     renderBookingThemes();
     updateSelectedCocktails();
     updateBookingSummary();
+    setBookingMode('');
+    bindImageGuards();
+    refreshMotion();
     initIcons();
   </script>
 </body>
